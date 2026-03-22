@@ -1,66 +1,62 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div className="landing">
+      <h1>The Joy of Being</h1>
+
+      <div className="landing-intro">
+        <p>
+          JOB is a church. Not the kind you grew up with. Not the kind that tells you
+          what to believe. The kind that asks you to show up — fully, honestly, as
+          yourself — and do the work of being human.
+        </p>
+        <p>
+          We believe being human is the job. Not your career. Not your productivity.
+          The actual, sacred, sometimes brutal work of becoming who you are.
+        </p>
+      </div>
+
+      <div className="video-placeholder">
+        Video coming soon
+      </div>
+
+      <div className="landing-section">
+        <h2>What is JOB?</h2>
+        <p>
+          JOB is a spiritual community structured as a church. Members move through a
+          five-threshold journey guided by elders — real humans who have walked the path
+          and can hold space for yours.
+        </p>
+        <p>
+          There are no sermons. No dogma. Just six truths, five thresholds, and a
+          commitment to showing up for your own life.
+        </p>
+      </div>
+
+      <div className="landing-section">
+        <h2>The Holding Company</h2>
+        <p>
+          JOB is also a holding company. The church holds the company. Not the other
+          way around. This means values come first — profit serves purpose, not the
+          reverse. The company builds tools and services that help people do their work.
+          The church makes sure that work stays honest.
+        </p>
+      </div>
+
+      <div className="landing-section">
+        <h2>How It Works</h2>
+        <p>
+          You read the doctrine. You consent to it — or you don&apos;t. If you do, you
+          become a member. You&apos;re assigned an elder. You move through five thresholds,
+          each one asking a harder question than the last. The app is the connective
+          tissue. The transformation happens through real humans.
+        </p>
+      </div>
+
+      <Link href="/doctrine" className="cta-link">
+        Read the doctrine
+      </Link>
     </div>
   );
 }

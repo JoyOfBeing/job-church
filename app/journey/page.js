@@ -19,14 +19,12 @@ export default function JourneyPage() {
     }
 
     async function fetchJourney() {
-      console.log('Fetching journey for user:', user.id);
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('journey_progress')
         .select('*')
         .eq('member_id', user.id)
         .order('threshold_number', { ascending: true });
 
-      console.log('Journey result:', { data, error });
       if (data) setProgress(data);
       setLoadingJourney(false);
     }

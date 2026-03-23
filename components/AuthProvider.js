@@ -25,6 +25,7 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data: { user: u }, error }) => {
+      console.log('Auth getUser:', { u: u?.id, error });
       if (error || !u) {
         setUser(null);
         setMember(null);
@@ -32,8 +33,12 @@ export function AuthProvider({ children }) {
         return;
       }
       setUser(u);
-      fetchMember(u.id).finally(() => setLoading(false));
-    }).catch(() => {
+      fetchMember(u.id).finally(() => {
+        console.log('Auth loading complete');
+        setLoading(false);
+      });
+    }).catch((err) => {
+      console.log('Auth error:', err);
       setUser(null);
       setLoading(false);
     });

@@ -74,6 +74,7 @@ export default function DoctrinePage() {
           .eq('id', data.user.id);
 
         await fetchMember(data.user.id);
+        router.refresh();
         router.push('/journey');
       }
     } catch (err) {

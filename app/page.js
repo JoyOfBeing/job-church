@@ -24,13 +24,21 @@ export default function Home() {
       <div className="landing-section">
         <h2>What is JOB?</h2>
         <p>
-          JOB is a spiritual community structured as a church. Members move through a
-          five-threshold journey guided by elders — real humans who have walked the path
-          and can hold space for yours.
+          JOB is a spiritual community structured as a church. No sermons. No dogma.
+          Just six truths and a commitment to showing up for your own life.
+        </p>
+      </div>
+
+      <div className="landing-section">
+        <h2>The Holy Trinity</h2>
+        <p>
+          Your first practice as a member of JOB: form a Trinity. Three people who
+          practice being honest with each other. Not a support group. Not therapy.
+          A practice field for becoming more conscious — together.
         </p>
         <p>
-          There are no sermons. No dogma. Just six truths, five thresholds, and a
-          commitment to showing up for your own life.
+          Three roles, woven together: the Coach (awareness), the Challenger (truth),
+          and the Creator (action). You move between all three. That&apos;s the braid.
         </p>
       </div>
 
@@ -38,19 +46,7 @@ export default function Home() {
         <h2>The Holding Company</h2>
         <p>
           JOB is also a holding company. The church holds the company. Not the other
-          way around. This means values come first — profit serves purpose, not the
-          reverse. The company builds tools and services that help people do their work.
-          The church makes sure that work stays honest.
-        </p>
-      </div>
-
-      <div className="landing-section">
-        <h2>How It Works</h2>
-        <p>
-          You read the doctrine. You consent to it — or you don&apos;t. If you do, you
-          become a member. You&apos;re assigned an elder. You move through five thresholds,
-          each one asking a harder question than the last. The app is the connective
-          tissue. The transformation happens through real humans.
+          way around. Values come first — profit serves purpose, not the reverse.
         </p>
       </div>
 

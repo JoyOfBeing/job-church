@@ -12,7 +12,7 @@ export default function Nav() {
       <div className="links">
         {loading ? null : user ? (
           <>
-            <Link href="/journey">Journey</Link>
+            <Link href="/trinity">My Trinity</Link>
             {member?.is_admin && <Link href="/admin">Admin</Link>}
             <button className="nav-btn" onClick={signOut}>Sign out</button>
           </>

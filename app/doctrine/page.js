@@ -8,38 +8,20 @@ const TRUTHS = [
   'Being human is the job. Not your title, not your output — the raw, ongoing act of being alive and awake.',
   'You already have what you need. Not someday. Not after the course. Now. The seed is in you.',
   'Suffering is not a bug. It is the curriculum. What breaks you open is what lets the light in.',
-  'No one does this alone. You need witnesses. You need elders. You need people who will not let you hide.',
+  'No one does this alone. You need witnesses. You need people who will not let you hide.',
   'You owe something to the whole. Your gifts are not yours to hoard. Offering is how you become real.',
   'The sacred is not elsewhere. It is here — in the mess, the money, the meals, the meetings. All of it.',
-];
-
-const COMMITMENTS = [
-  'I am a member of JOB.',
-  'I will show up.',
-  'I will do my work — the inner kind.',
-  'I will offer something only I can give.',
-  'I will tithe. How much is between you and you.',
 ];
 
 export default function DoctrinePage() {
   const router = useRouter();
   const { supabase, fetchMember } = useAuth();
-  const [checks, setChecks] = useState(new Array(5).fill(false));
+  const [agreed, setAgreed] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [titheAmount, setTitheAmount] = useState('');
-  const [titheNote, setTitheNote] = useState('');
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
-
-  const allChecked = checks.every(Boolean);
-
-  function toggleCheck(i) {
-    const next = [...checks];
-    next[i] = !next[i];
-    setChecks(next);
-  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -62,20 +44,22 @@ export default function DoctrinePage() {
       }
 
       if (data.user) {
-        // Update member row with tithe info
-        const titheNum = parseFloat(titheAmount) || 0;
         await supabase
           .from('members')
-          .update({
-            name,
-            tithe_amount: titheNum,
-            tithe_note: titheNote || null,
-          })
+          .update({ name })
           .eq('id', data.user.id);
 
         await fetchMember(data.user.id);
         router.refresh();
-        router.push('/journey');
+
+        // Check if they came from an invite link
+        const joinCode = typeof window !== 'undefined' && sessionStorage.getItem('join_code');
+        if (joinCode) {
+          sessionStorage.removeItem('join_code');
+          router.push(`/join/${joinCode}`);
+        } else {
+          router.push('/trinity');
+        }
       }
     } catch (err) {
       setError('Something went wrong. Please try again.');
@@ -100,20 +84,17 @@ export default function DoctrinePage() {
       </div>
 
       <div className="commitments">
-        <h2>Your Commitments</h2>
-        {COMMITMENTS.map((text, i) => (
-          <label key={i} className="commitment-item">
-            <input
-              type="checkbox"
-              checked={checks[i]}
-              onChange={() => toggleCheck(i)}
-            />
-            <span>{text}</span>
-          </label>
-        ))}
+        <label className="commitment-item">
+          <input
+            type="checkbox"
+            checked={agreed}
+            onChange={() => setAgreed(!agreed)}
+          />
+          <span>I&apos;m in.</span>
+        </label>
       </div>
 
-      {allChecked && (
+      {agreed && (
         <div className="signup-form">
           <h2>Become a Member</h2>
 
@@ -154,35 +135,12 @@ export default function DoctrinePage() {
               />
             </div>
 
-            <div className="field">
-              <label>Monthly tithe</label>
-              <input
-                type="number"
-                value={titheAmount}
-                onChange={(e) => setTitheAmount(e.target.value)}
-                placeholder="Any amount"
-                min="0"
-                step="0.01"
-              />
-              <span className="field-hint">No floor. No ceiling. No anchoring.</span>
-            </div>
-
-            <div className="field">
-              <label>A note about your tithe (optional)</label>
-              <input
-                type="text"
-                value={titheNote}
-                onChange={(e) => setTitheNote(e.target.value)}
-                placeholder="Why this amount?"
-              />
-            </div>
-
             <button
               type="submit"
               className="btn btn-gold btn-full"
               disabled={submitting}
             >
-              {submitting ? 'Creating your membership...' : 'I agree'}
+              {submitting ? 'Creating your membership...' : 'I\u2019m in'}
             </button>
           </form>
         </div>

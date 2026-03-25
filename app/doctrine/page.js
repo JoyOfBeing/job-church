@@ -4,13 +4,19 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../../components/AuthProvider';
 
-const TRUTHS = [
-  'Being human is the job. Not your title, not your output — the raw, ongoing act of being alive and awake.',
-  'You already have what you need. Not someday. Not after the course. Now. The seed is in you.',
-  'Suffering is not a bug. It is the curriculum. What breaks you open is what lets the light in.',
-  'No one does this alone. You need witnesses. You need people who will not let you hide.',
-  'You owe something to the whole. Your gifts are not yours to hoard. Offering is how you become real.',
-  'The sacred is not elsewhere. It is here — in the mess, the money, the meals, the meetings. All of it.',
+const BELIEFS = [
+  { text: 'Being human is the job.', sub: 'Everything else is secondary.' },
+  { text: 'You already have what you need.', sub: 'You\u2019re not broken. You\u2019re not lacking.' },
+  { text: 'The path is never certain.', sub: 'You walk it into existence.' },
+  { text: 'Grief and suffering are part of it.', sub: 'You don\u2019t get to bypass them.' },
+  { text: 'You can\u2019t do this alone.', sub: 'You need people who see you clearly.' },
+  { text: 'Telling the truth moves things.', sub: 'Even when it costs you.' },
+  { text: 'Your body knows before your mind does.', sub: 'Learn how to listen to it.' },
+  { text: 'What you want matters.', sub: 'More than what you think you should want.' },
+  { text: 'Your gifts aren\u2019t just for you.', sub: 'They become magic when you offer them.' },
+  { text: 'The sacred isn\u2019t somewhere else.', sub: 'Everything is sacred, even you.' },
+  { text: 'You\u2019re allowed to enjoy being here.', sub: 'Aliveness is the prerequisite to the final step.' },
+  { text: 'You\u2019re invited to co-create a new reality.', sub: 'But in order to build something new, you must first become it.' },
 ];
 
 export default function DoctrinePage() {
@@ -50,7 +56,6 @@ export default function DoctrinePage() {
           .eq('id', data.user.id);
 
         await fetchMember(data.user.id);
-        router.refresh();
 
         // Check if they came from an invite link
         const joinCode = typeof window !== 'undefined' && sessionStorage.getItem('join_code');
@@ -70,17 +75,20 @@ export default function DoctrinePage() {
 
   return (
     <div className="doctrine">
-      <h1>The Doctrine</h1>
-      <p className="doctrine-subtitle">Six truths. Read them slowly.</p>
+      <h1>The J.O.B. Doctrine</h1>
+      <p className="doctrine-subtitle">The 12 steps back to you</p>
 
       <ol className="truths">
-        {TRUTHS.map((truth, i) => (
-          <li key={i}>{truth}</li>
+        {BELIEFS.map((belief, i) => (
+          <li key={i}>
+            {belief.text}
+            <span className="belief-sub">{belief.sub}</span>
+          </li>
         ))}
       </ol>
 
       <div className="breath-pause">
-        Take a breath before you continue.
+        Are you willing to put these beliefs into practice?
       </div>
 
       <div className="commitments">
@@ -90,7 +98,7 @@ export default function DoctrinePage() {
             checked={agreed}
             onChange={() => setAgreed(!agreed)}
           />
-          <span>I&apos;m in.</span>
+          <span>I AM</span>
         </label>
       </div>
 

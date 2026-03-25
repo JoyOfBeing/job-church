@@ -24,15 +24,16 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user: u }, error }) => {
-      if (error || !u) {
+    // Use getSession (local, fast) instead of getUser (network call that can hang)
+    supabase.auth.getSession().then(({ data: { session }, error }) => {
+      if (error || !session?.user) {
         setUser(null);
         setMember(null);
         setLoading(false);
         return;
       }
-      setUser(u);
-      fetchMember(u.id).finally(() => setLoading(false));
+      setUser(session.user);
+      fetchMember(session.user.id).finally(() => setLoading(false));
     }).catch(() => {
       setUser(null);
       setLoading(false);

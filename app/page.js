@@ -3,17 +3,35 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <div className="landing">
-      <h1>The Joy of Being</h1>
+      <h1>Being human is the job now</h1>
+      <h2 className="landing-tagline">The rest is being automated</h2>
 
       <div className="landing-intro">
         <p>
-          JOB is a church. Not the kind you grew up with. Not the kind that tells you
-          what to believe. The kind that asks you to show up — fully, honestly, as
-          yourself — and do the work of being human.
+          Work never taught us how to be human. At best, it fragmented us. At worst,
+          it punished us for expressing who we really are.
         </p>
         <p>
-          We believe being human is the job. Not your career. Not your productivity.
-          The actual, sacred, sometimes brutal work of becoming who you are.
+          It prioritized our brains over our bodies. Our hands over our hearts. And,
+          somewhere along the way, we forgot to care about all those parts ourselves.
+          Because who was going to pay for it?
+        </p>
+        <p>Now, we&apos;re all paying for it.</p>
+        <p>
+          And now that AI is here, millions of people will be without jobs. And the ones
+          that remain will be paid to do the things only humans can do.
+        </p>
+        <p>
+          It&apos;s easy to imagine the worst case scenario here. But we prefer the
+          best case one:
+        </p>
+        <p>
+          That you step into your job.<br />
+          The one that&apos;s always been yours.
+        </p>
+        <p>
+          If we lost our joy back when we had jobs, let&apos;s make it our new job
+          to rediscover it.
         </p>
       </div>
 
@@ -22,37 +40,17 @@ export default function Home() {
       </div>
 
       <div className="landing-section">
-        <h2>What is JOB?</h2>
-        <p>
-          JOB is a spiritual community structured as a church. No sermons. No dogma.
-          Just six truths and a commitment to showing up for your own life.
-        </p>
-      </div>
-
-      <div className="landing-section">
-        <h2>The Holy Trinity</h2>
-        <p>
-          Your first practice as a member of JOB: form a Trinity. Three people who
-          practice being honest with each other. Not a support group. Not therapy.
-          A practice field for becoming more conscious — together.
-        </p>
-        <p>
-          Three roles, woven together: the Coach (awareness), the Challenger (truth),
-          and the Creator (action). You move between all three. That&apos;s the braid.
-        </p>
-      </div>
-
-      <div className="landing-section">
-        <h2>The Holding Company</h2>
-        <p>
-          JOB is also a holding company. The church holds the company. Not the other
-          way around. Values come first — profit serves purpose, not the reverse.
-        </p>
+        <h2>Welcome to J.O.B.</h2>
+        <p>It stands for the Joy of Being.</p>
       </div>
 
       <Link href="/doctrine" className="cta-link">
-        Read the doctrine
+        Read our Beliefs
       </Link>
+
+      <p className="returning-member">
+        Already a member? <Link href="/login">Sign in</Link>
+      </p>
     </div>
   );
 }

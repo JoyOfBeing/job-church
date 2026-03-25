@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { useAuth } from '../../components/AuthProvider';
+import { createClient } from '../../lib/supabase';
 
 export default function LoginPage() {
   const router = useRouter();
-  const { supabase } = useAuth();
+  const supabase = createClient();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -18,25 +18,29 @@ export default function LoginPage() {
     setError('');
     setLoading(true);
 
-    const { error: signInError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    try {
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    if (signInError) {
-      setError(signInError.message);
+      if (signInError) {
+        setError(signInError.message);
+        setLoading(false);
+        return;
+      }
+
+      router.push('/trinity');
+    } catch (err) {
+      setError('Something went wrong. Please try again.');
       setLoading(false);
-      return;
     }
-
-    router.refresh();
-    router.push('/journey');
   }
 
   return (
     <div className="auth-page">
       <h1>Welcome back</h1>
-      <p className="subtitle">Sign in to continue your journey.</p>
+      <p className="subtitle">Sign in to continue.</p>
 
       {error && <div className="error-msg">{error}</div>}
 

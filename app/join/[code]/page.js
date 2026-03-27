@@ -13,8 +13,6 @@ export default function JoinPage() {
   const [user, setUser] = useState(null);
 
   // Auth form state
-  const [isSignUp, setIsSignUp] = useState(true);
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [authError, setAuthError] = useState('');
@@ -51,7 +49,7 @@ export default function JoinPage() {
       .eq('trinity_id', trinity.id);
 
     if (existingMembers?.some(m => m.member_id === u.id)) {
-      router.push('/trinity');
+      router.push('/braid');
       return;
     }
 
@@ -73,7 +71,7 @@ export default function JoinPage() {
     }
 
     setStatus('success');
-    setTimeout(() => router.push('/trinity'), 1500);
+    setTimeout(() => router.push('/braid'), 1500);
   }
 
   async function handleAuth(e) {
@@ -82,44 +80,20 @@ export default function JoinPage() {
     setAuthLoading(true);
 
     try {
-      if (isSignUp) {
-        const { data, error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: { data: { name } },
-        });
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-        if (error) {
-          setAuthError(error.message);
-          setAuthLoading(false);
-          return;
-        }
+      if (error) {
+        setAuthError(error.message);
+        setAuthLoading(false);
+        return;
+      }
 
-        if (data.user) {
-          await supabase
-            .from('members')
-            .update({ name })
-            .eq('id', data.user.id);
-
-          setUser(data.user);
-          joinTrinity(data.user);
-        }
-      } else {
-        const { data, error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-
-        if (error) {
-          setAuthError(error.message);
-          setAuthLoading(false);
-          return;
-        }
-
-        if (data.user) {
-          setUser(data.user);
-          joinTrinity(data.user);
-        }
+      if (data.user) {
+        setUser(data.user);
+        joinTrinity(data.user);
       }
     } catch (err) {
       setAuthError('Something went wrong. Please try again.');
@@ -128,14 +102,14 @@ export default function JoinPage() {
   }
 
   if (status === 'checking' || status === 'joining') {
-    return <div className="loading">Joining your Trinity...</div>;
+    return <div className="loading">Joining your braid...</div>;
   }
 
   if (status === 'success') {
     return (
       <div className="trinity-page">
         <h1>You&apos;re in.</h1>
-        <p className="subtitle">Redirecting to your Trinity...</p>
+        <p className="subtitle">Redirecting to your braid...</p>
       </div>
     );
   }
@@ -143,10 +117,10 @@ export default function JoinPage() {
   if (status === 'full') {
     return (
       <div className="trinity-page">
-        <h1>This Trinity is full</h1>
-        <p className="subtitle">A Trinity holds three. This one is already complete.</p>
-        <button className="btn btn-gold" onClick={() => router.push('/trinity')}>
-          Go to your Trinity
+        <h1>This braid is full</h1>
+        <p className="subtitle">A braid holds three. This one is already complete.</p>
+        <button className="btn btn-gold" onClick={() => router.push('/braid')}>
+          Go to your braid
         </button>
       </div>
     );
@@ -164,65 +138,63 @@ export default function JoinPage() {
     );
   }
 
-  // needsAuth — show sign up / sign in form right here
+  // needsAuth — show options to sign in or go through doctrine
   return (
     <div className="doctrine">
-      <h1>Join a Holy Trinity</h1>
+      <h1>Join a Braid</h1>
       <p className="doctrine-subtitle">
-        {isSignUp ? 'Create your account to join.' : 'Sign in to join.'}
+        Someone invited you. Before you join, there&apos;s one step.
       </p>
 
-      {authError && <div className="error-msg">{authError}</div>}
-
-      <form onSubmit={handleAuth}>
-        {isSignUp && (
-          <div className="field">
-            <label>Name</label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Your name"
-              required
-            />
-          </div>
-        )}
-
-        <div className="field">
-          <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@example.com"
-            required
-          />
+      <div className="trinity-options" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '2rem' }}>
+        <div>
+          <h3>New here?</h3>
+          <p>Read our beliefs and become a member first.</p>
+          <button
+            className="btn btn-gold"
+            onClick={() => {
+              sessionStorage.setItem('join_code', code);
+              router.push('/doctrine');
+            }}
+          >
+            Read the doctrine
+          </button>
         </div>
 
-        <div className="field">
-          <label>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="At least 6 characters"
-            minLength={6}
-            required
-          />
+        <div>
+          <h3>Already a member?</h3>
+
+          {authError && <div className="error-msg">{authError}</div>}
+
+          <form onSubmit={handleAuth}>
+            <div className="field">
+              <label>Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                required
+              />
+            </div>
+
+            <div className="field">
+              <label>Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Your password"
+                required
+              />
+            </div>
+
+            <button type="submit" className="btn btn-gold btn-full" disabled={authLoading}>
+              {authLoading ? 'Signing in...' : 'Sign in & join'}
+            </button>
+          </form>
         </div>
-
-        <button type="submit" className="btn btn-gold btn-full" disabled={authLoading}>
-          {authLoading ? 'Working...' : isSignUp ? 'Sign up & join' : 'Sign in & join'}
-        </button>
-      </form>
-
-      <p className="auth-switch">
-        {isSignUp ? (
-          <>Already a member? <button className="nav-btn" onClick={() => setIsSignUp(false)}>Sign in</button></>
-        ) : (
-          <>New here? <button className="nav-btn" onClick={() => setIsSignUp(true)}>Sign up</button></>
-        )}
-      </p>
+      </div>
     </div>
   );
 }

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../../components/AuthProvider';
+import JourneyProgress from '../../components/JourneyProgress';
 
 const BELIEFS = [
   { text: 'Being human is the job.', sub: 'Everything else is secondary.' },
@@ -21,10 +22,11 @@ const BELIEFS = [
 
 export default function DoctrinePage() {
   const router = useRouter();
-  const { supabase, fetchMember } = useAuth();
+  const { user, supabase, fetchMember } = useAuth();
   const [agreed, setAgreed] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -50,12 +52,12 @@ export default function DoctrinePage() {
       }
 
       if (data.user) {
-        await supabase
+        // Update name, don't block on it
+        supabase
           .from('members')
-          .update({ name })
-          .eq('id', data.user.id);
-
-        await fetchMember(data.user.id);
+          .update({ name, phone })
+          .eq('id', data.user.id)
+          .then(() => fetchMember(data.user.id));
 
         // Check if they came from an invite link
         const joinCode = typeof window !== 'undefined' && sessionStorage.getItem('join_code');
@@ -63,7 +65,7 @@ export default function DoctrinePage() {
           sessionStorage.removeItem('join_code');
           router.push(`/join/${joinCode}`);
         } else {
-          router.push('/trinity');
+          router.push('/threshold');
         }
       }
     } catch (err) {
@@ -71,6 +73,26 @@ export default function DoctrinePage() {
     }
 
     setSubmitting(false);
+  }
+
+  // Signed-in members just see the beliefs (no sign-up form)
+  if (user) {
+    return (
+      <div className="doctrine">
+        <JourneyProgress completedSteps={[1]} />
+        <h1>The J.O.B. Doctrine</h1>
+        <p className="doctrine-subtitle">The 12 steps back to you</p>
+
+        <ol className="truths">
+          {BELIEFS.map((belief, i) => (
+            <li key={i}>
+              {belief.text}
+              <span className="belief-sub">{belief.sub}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    );
   }
 
   return (
@@ -128,6 +150,16 @@ export default function DoctrinePage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
                 required
+              />
+            </div>
+
+            <div className="field">
+              <label>Phone</label>
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="(555) 123-4567"
               />
             </div>
 

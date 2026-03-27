@@ -24,18 +24,25 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    // Use getSession (local, fast) instead of getUser (network call that can hang)
+    // Hard timeout — never hang longer than 2s no matter what
+    const hardTimeout = setTimeout(() => setLoading(false), 2000);
+
     supabase.auth.getSession().then(({ data: { session }, error }) => {
       if (error || !session?.user) {
         setUser(null);
         setMember(null);
+        clearTimeout(hardTimeout);
         setLoading(false);
         return;
       }
       setUser(session.user);
-      fetchMember(session.user.id).finally(() => setLoading(false));
+      fetchMember(session.user.id).finally(() => {
+        clearTimeout(hardTimeout);
+        setLoading(false);
+      });
     }).catch(() => {
       setUser(null);
+      clearTimeout(hardTimeout);
       setLoading(false);
     });
 
@@ -59,6 +66,7 @@ export function AuthProvider({ children }) {
     await supabase.auth.signOut();
     setUser(null);
     setMember(null);
+    window.location.href = '/';
   }
 
   return (

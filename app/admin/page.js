@@ -8,8 +8,8 @@ export default function AdminPage() {
   const { user, member, loading, supabase } = useAuth();
   const router = useRouter();
   const [members, setMembers] = useState([]);
-  const [trinities, setTrinities] = useState([]);
-  const [trinityMembers, setTrinityMembers] = useState({});
+  const [braids, setBraids] = useState([]);
+  const [braidMembers, setBraidMembers] = useState({});
   const [unmatched, setUnmatched] = useState([]);
   const [gatherings, setGatherings] = useState([]);
   const [loadingData, setLoadingData] = useState(true);
@@ -18,7 +18,6 @@ export default function AdminPage() {
   const [gTitle, setGTitle] = useState('');
   const [gDate, setGDate] = useState('');
   const [gCrowdcast, setGCrowdcast] = useState('');
-  const [gVideo, setGVideo] = useState('');
   const [savingGathering, setSavingGathering] = useState(false);
 
   useEffect(() => {
@@ -31,7 +30,7 @@ export default function AdminPage() {
   }, [user, member, loading]);
 
   async function fetchData() {
-    const [membersRes, trinitiesRes, tmRes, gatheringsRes] = await Promise.all([
+    const [membersRes, braidsRes, tmRes, gatheringsRes] = await Promise.all([
       supabase.from('members').select('*').order('joined_at', { ascending: false }),
       supabase.from('trinities').select('*').order('created_at', { ascending: false }),
       supabase.from('trinity_members').select('*, members(name, email)'),
@@ -43,7 +42,7 @@ export default function AdminPage() {
       setUnmatched(membersRes.data.filter(m => m.wants_match));
     }
 
-    if (trinitiesRes.data) setTrinities(trinitiesRes.data);
+    if (braidsRes.data) setBraids(braidsRes.data);
 
     if (tmRes.data) {
       const grouped = {};
@@ -51,7 +50,7 @@ export default function AdminPage() {
         if (!grouped[tm.trinity_id]) grouped[tm.trinity_id] = [];
         grouped[tm.trinity_id].push(tm);
       });
-      setTrinityMembers(grouped);
+      setBraidMembers(grouped);
     }
 
     if (gatheringsRes.data) setGatherings(gatheringsRes.data);
@@ -67,13 +66,12 @@ export default function AdminPage() {
       title: gTitle,
       date: new Date(gDate).toISOString(),
       crowdcast_url: gCrowdcast || null,
-      video_url: gVideo || null,
+      video_url: gCrowdcast || null,
     });
 
     setGTitle('');
     setGDate('');
     setGCrowdcast('');
-    setGVideo('');
     setSavingGathering(false);
     fetchData();
   }
@@ -92,7 +90,7 @@ export default function AdminPage() {
   return (
     <div className="admin">
       <h1>Admin</h1>
-      <p className="subtitle">Manage members, trinities, and gatherings.</p>
+      <p className="subtitle">Manage members, braids, and gatherings.</p>
 
       <div className="admin-section">
         <h2>Members ({members.length})</h2>
@@ -112,9 +110,9 @@ export default function AdminPage() {
       </div>
 
       <div className="admin-section">
-        <h2>Trinities ({trinities.length})</h2>
-        {trinities.map(t => {
-          const tMembers = trinityMembers[t.id] || [];
+        <h2>Braids ({braids.length})</h2>
+        {braids.map(t => {
+          const tMembers = braidMembers[t.id] || [];
           return (
             <div key={t.id} className="member-card">
               <div className="member-header">
@@ -130,12 +128,12 @@ export default function AdminPage() {
             </div>
           );
         })}
-        {trinities.length === 0 && <p className="section-desc">No trinities yet.</p>}
+        {braids.length === 0 && <p className="section-desc">No braids yet.</p>}
       </div>
 
       <div className="admin-section">
         <h2>Unmatched Queue ({unmatched.length})</h2>
-        <p className="section-desc">Members waiting to be matched into a trinity.</p>
+        <p className="section-desc">Members waiting to be matched into a braid.</p>
         {unmatched.map(m => (
           <div key={m.id} className="member-card">
             <div className="member-name">{m.name || 'Unnamed'}</div>
@@ -170,21 +168,12 @@ export default function AdminPage() {
             />
           </div>
           <div className="field">
-            <label>Crowdcast URL (for RSVP)</label>
+            <label>Crowdcast URL (for live + replay)</label>
             <input
               type="url"
               value={gCrowdcast}
               onChange={e => setGCrowdcast(e.target.value)}
               placeholder="https://crowdcast.io/..."
-            />
-          </div>
-          <div className="field">
-            <label>Video URL (for replay — add after the event)</label>
-            <input
-              type="url"
-              value={gVideo}
-              onChange={e => setGVideo(e.target.value)}
-              placeholder="https://youtube.com/..."
             />
           </div>
           <button type="submit" className="btn btn-gold" disabled={savingGathering}>
@@ -198,8 +187,8 @@ export default function AdminPage() {
               <div>
                 <div className="member-name">{g.title}</div>
                 <div className="member-email">
-                  {new Date(g.date).toLocaleDateString()} —
-                  {g.video_url ? ' Has replay' : ' No replay yet'}
+                  {new Date(g.date).toLocaleDateString()}
+                  {g.crowdcast_url ? ' — Has Crowdcast link' : ''}
                 </div>
               </div>
               <button

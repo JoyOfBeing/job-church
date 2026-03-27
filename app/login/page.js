@@ -18,6 +18,11 @@ export default function LoginPage() {
     setError('');
     setLoading(true);
 
+    // Hard timeout — if sign-in hangs, redirect anyway after 3s
+    const timeout = setTimeout(() => {
+      window.location.href = '/braid';
+    }, 3000);
+
     try {
       const { error: signInError } = await supabase.auth.signInWithPassword({
         email,
@@ -25,13 +30,16 @@ export default function LoginPage() {
       });
 
       if (signInError) {
+        clearTimeout(timeout);
         setError(signInError.message);
         setLoading(false);
         return;
       }
 
-      router.push('/trinity');
+      clearTimeout(timeout);
+      window.location.href = '/braid';
     } catch (err) {
+      clearTimeout(timeout);
       setError('Something went wrong. Please try again.');
       setLoading(false);
     }
@@ -69,6 +77,10 @@ export default function LoginPage() {
           {loading ? 'Signing in...' : 'Sign in'}
         </button>
       </form>
+
+      <p className="auth-switch">
+        <Link href="/forgot-password">Forgot password?</Link>
+      </p>
 
       <p className="auth-switch">
         Not a member yet? <Link href="/doctrine">Read the doctrine</Link>

@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { useAuth } from './AuthProvider';
 
 const STEPS_TOP = [
   { label: 'Beliefs', path: '/doctrine', number: 1 },
@@ -10,14 +11,16 @@ const STEPS_TOP = [
   { label: 'SNL', path: '/snl', number: 4 },
 ];
 
-const STEPS_BOTTOM = [
-  { label: 'Deprogramming', path: null, number: 5 },
-  { label: 'Magic Show', path: null, number: 6 },
-  { label: 'JOB Board', path: null, number: 7 },
-  { label: 'Hold Co', path: null, number: 8 },
-];
-
 export default function JourneyProgress({ completedSteps = [] }) {
+  const { member } = useAuth();
+
+  // Unlock Deprogramming when committed, keep others locked for now
+  const STEPS_BOTTOM = [
+    { label: 'Deprogramming', path: member?.is_committed ? '/deprogramming' : null, number: 5 },
+    { label: 'Magic Show', path: null, number: 6 },
+    { label: 'JOB Board', path: null, number: 7 },
+    { label: 'Hold Co', path: null, number: 8 },
+  ];
   const pathname = usePathname();
   const allSteps = [...STEPS_TOP, ...STEPS_BOTTOM];
   const currentIndex = allSteps.findIndex(s => s.path === pathname);

@@ -23,6 +23,7 @@ export default function Nav() {
           <>
             <a href="/braid">My Braid</a>
             <a href="/snl">SNL</a>
+            {member?.is_committed && <a href="/deprogramming">Tracks</a>}
             {member?.is_admin && <a href="/admin">Admin</a>}
             <button className="nav-btn" onClick={signOut}>Sign out</button>
           </>

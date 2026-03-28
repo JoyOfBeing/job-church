@@ -1216,6 +1216,629 @@ textarea {
    RESPONSIVE
    ============================================ */
 
+/* ============================================
+   MEMBERSHIP PAGE
+   ============================================ */
+
+.membership-page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 6rem;
+  animation: fadeInSlow 0.8s ease;
+}
+
+.membership-page h1 {
+  font-size: 2.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.membership-intro {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.membership-section {
+  margin-top: 2.5rem;
+}
+
+.membership-section h2 {
+  color: var(--glow-teal);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.membership-desc {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.membership-commitment {
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.membership-commitment span {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.membership-donation {
+  animation: fadeIn 0.4s ease;
+}
+
+.donation-amounts {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.donation-amount-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+
+.donation-amount-btn:hover {
+  border-color: var(--glow-purple);
+  color: var(--glow-teal);
+  box-shadow: 0 0 12px var(--iridescent-glow);
+}
+
+.donation-custom-note {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.donorbox-embed {
+  margin: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.donation-note {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+.membership-confirmed {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.membership-confirmed-icon {
+  font-size: 3rem;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--iridescent);
+  color: var(--bg);
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 0 30px var(--iridescent-glow);
+}
+
+.membership-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 1rem;
+}
+
+.membership-preview-item {
+  padding: 0.6rem 1rem;
+  background: var(--surface);
+  border-left: 2px solid var(--glow-purple);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  transition: color 0.15s;
+}
+
+.membership-preview-item:hover {
+  color: var(--glow-teal);
+}
+
+.coming-soon-block {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.coming-soon-block h1 {
+  margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   DEPROGRAMMING PAGES
+   ============================================ */
+
+.deprogramming-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 6rem;
+  animation: fadeInSlow 0.8s ease;
+}
+
+.deprogramming-page h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.25rem;
+}
+
+.back-link {
+  display: inline-block;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  transition: color 0.15s;
+}
+
+.back-link:hover {
+  color: var(--glow-teal);
+}
+
+.track-section {
+  margin-top: 2.5rem;
+}
+
+.track-section h2 {
+  margin-bottom: 0.25rem;
+}
+
+.track-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.track-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.15s;
+  margin-bottom: 0.75rem;
+}
+
+.track-card:hover {
+  border-color: var(--glow-purple);
+  box-shadow: 0 0 15px var(--iridescent-glow);
+  color: var(--text);
+}
+
+.track-card-core {
+  border-color: var(--glow-purple);
+  position: relative;
+  overflow: hidden;
+}
+
+.track-card-core::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--iridescent);
+}
+
+.track-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.track-card h3 {
+  font-size: 1.1rem;
+}
+
+.track-card p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.track-card-footer {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.track-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.track-badge-enrolled {
+  background: var(--green-dim);
+  color: var(--green);
+}
+
+.track-badge-core {
+  background: var(--gold-dim);
+  color: var(--gold);
+}
+
+.track-meta {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.track-meta-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.track-description {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-top: 0.75rem;
+}
+
+.track-enroll-section {
+  margin: 1.5rem 0;
+}
+
+.track-complete-banner {
+  background: var(--green-dim);
+  color: var(--green);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+/* Module list */
+
+.module-list {
+  margin-top: 2rem;
+}
+
+.module-list h2 {
+  margin-bottom: 1rem;
+}
+
+.module-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.5rem;
+  transition: border-color 0.15s;
+}
+
+.module-card:hover {
+  border-color: var(--border-hover);
+}
+
+.module-card-complete {
+  border-color: rgba(22, 163, 74, 0.3);
+}
+
+.module-card-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: var(--surface-hover);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.module-card-complete .module-card-number {
+  background: var(--green-dim);
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.module-card-content {
+  flex: 1;
+}
+
+.module-card-content h3 {
+  font-size: 1rem;
+  margin-bottom: 0.15rem;
+}
+
+.module-status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.module-status-done { color: var(--green); }
+.module-status-active { color: var(--glow-teal); }
+
+/* Module content page */
+
+.module-page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 6rem;
+  animation: fadeInSlow 0.8s ease;
+}
+
+.module-header {
+  margin-bottom: 2rem;
+}
+
+.module-number-label {
+  color: var(--glow-teal);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.module-page h1 {
+  font-size: 2rem;
+  margin-top: 0.25rem;
+}
+
+.module-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.module-content p {
+  margin-bottom: 1.25rem;
+}
+
+.module-prompt {
+  background: var(--surface);
+  border: 1px solid var(--glow-purple);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.module-prompt h3 {
+  color: var(--glow-teal);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+.module-prompt p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  font-style: italic;
+}
+
+.module-actions {
+  margin-bottom: 2rem;
+}
+
+.module-complete-banner {
+  background: var(--green-dim);
+  color: var(--green);
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-weight: 600;
+}
+
+.module-nav {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ============================================
+   ELDERS PAGES
+   ============================================ */
+
+.elders-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 6rem;
+  animation: fadeInSlow 0.8s ease;
+}
+
+.elders-page h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.25rem;
+}
+
+.elder-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.elder-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.15s;
+}
+
+.elder-card:hover {
+  border-color: var(--glow-purple);
+  box-shadow: 0 0 15px var(--iridescent-glow);
+  color: var(--text);
+}
+
+.elder-photo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.elder-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.elder-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.elder-specialties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.elder-specialty-tag {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  background: var(--gold-dim);
+  color: var(--gold);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.elder-bio-preview {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Elder profile page */
+
+.elder-profile-page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 6rem;
+  animation: fadeInSlow 0.8s ease;
+}
+
+.elder-profile-header {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.elder-profile-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid var(--glow-purple);
+  box-shadow: 0 0 20px var(--iridescent-glow);
+}
+
+.elder-profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.elder-profile-page h1 {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.elder-full-bio {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.elder-tracks-section {
+  margin-bottom: 2.5rem;
+}
+
+.elder-booking-section {
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+}
+
+.elder-booking-section h2 {
+  margin-bottom: 0.25rem;
+}
+
+/* ============================================
+   ADMIN BADGES
+   ============================================ */
+
+.admin-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.admin-badge-gold {
+  background: var(--gold-dim);
+  color: var(--gold);
+}
+
+.admin-badge-green {
+  background: var(--green-dim);
+  color: var(--green);
+}
+
+.admin-badge-dim {
+  background: rgba(255,255,255,0.05);
+  color: var(--text-muted);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
 @media (max-width: 600px) {
   nav { padding: 0.75rem 1rem; }
   nav .links { gap: 0.75rem; }
@@ -1223,4 +1846,8 @@ textarea {
   .doctrine h1 { font-size: 1.8rem; }
   .trinity-options { grid-template-columns: 1fr; }
   .trinity-members { grid-template-columns: 1fr; }
+  .track-grid { grid-template-columns: 1fr; }
+  .elder-grid { grid-template-columns: 1fr; }
+  .donation-amounts { justify-content: center; }
+  .elder-profile-header { flex-direction: column; text-align: center; }
 }

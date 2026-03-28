@@ -123,6 +123,17 @@ export default function SNLPage() {
           ))}
         </div>
       )}
+
+      <div className="whats-next">
+        <h3>Ready to go deeper?</h3>
+        <p>
+          You&apos;ve shown up. You&apos;ve been braided. You&apos;ve watched the (de)programming.
+          Now there&apos;s a choice in front of you.
+        </p>
+        <a href="/membership" className="btn btn-gold" style={{ marginTop: '0.5rem' }}>
+          Cross the next threshold
+        </a>
+      </div>
     </div>
   );
 }

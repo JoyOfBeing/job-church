@@ -23,9 +23,9 @@ export default function Home() {
     <div className="landing">
       <div className="landing-hero">
         <h1 className="landing-headline">
-          Being human<br />is the job now
+          A church for people<br />who&apos;d never join one (again/ever)
         </h1>
-        <p className="landing-tagline">The rest is being automated</p>
+        <p className="landing-tagline"></p>
       </div>
 
       <div className="landing-badge">
@@ -41,30 +41,29 @@ export default function Home() {
 
       <div className="landing-intro">
         <p>
-          Work never taught us how to be human. At best, it fragmented us. At worst,
-          it punished us for expressing who we really are.
+          Let&apos;s skip the part where we pretend you&apos;re fine.
         </p>
         <p>
-          It prioritized our brains over our bodies. Our hands over our hearts. And,
-          somewhere along the way, we forgot to care about all those parts ourselves.
-          Because who was going to pay for it?
-        </p>
-        <p className="landing-pullquote">Now, we&apos;re all paying for it.</p>
-        <p>
-          And now that AI is here, millions of people will be without jobs. And the ones
-          that remain will be paid to do the things only humans can do.
-        </p>
-        <p>
-          It&apos;s easy to imagine the worst case scenario here. But we prefer the
-          best case one:
+          You lost the job, the faith, or the plot. Possibly all three.
+          You&apos;re somewhere between &ldquo;I&apos;m figuring it out&rdquo;
+          and &ldquo;I don&apos;t know who I am anymore&rdquo; and honestly?
+          That&apos;s exactly where we want you.
         </p>
         <p className="landing-pullquote">
-          That you step into your job.<br />
-          The one that&apos;s always been yours.
+          The breakdown is the beginning.
         </p>
         <p>
-          If we lost our joy back when we had jobs, let&apos;s make it our new job
-          to rediscover it.
+          J.O.B. is not here to save you. You don&apos;t need saving. You need
+          people who&apos;ve done their own inner work and can help point you back
+          to yourself. You need a place that holds grief and desire in the same
+          room. You need permission to stop performing and start being.
+        </p>
+        <p>
+          J.O.B. is here to be the liminal space between who you are and who
+          you&apos;re becoming.
+        </p>
+        <p className="landing-pullquote">
+          The joy of being. Fully alive. Fully yourself.<br />That&apos;s your sacred work.
         </p>
       </div>
 

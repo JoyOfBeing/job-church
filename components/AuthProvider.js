@@ -63,9 +63,13 @@ export function AuthProvider({ children }) {
   }, []);
 
   async function signOut() {
-    await supabase.auth.signOut();
     setUser(null);
     setMember(null);
+    try {
+      await supabase.auth.signOut({ scope: 'local' });
+    } catch (e) {
+      // signOut can fail if session is already gone — that's fine
+    }
     window.location.href = '/';
   }
 

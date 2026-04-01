@@ -67,7 +67,7 @@ export default function TrinityPage() {
       return;
     }
 
-    const code = Math.random().toString(36).substring(2, 10);
+    const code = crypto.randomUUID().replace(/-/g, '').substring(0, 12);
     const userId = user.id;
 
     try {
@@ -141,7 +141,7 @@ export default function TrinityPage() {
         waiting[1],
       ];
       const matchedIds = matched.map(m => m.id);
-      const code = Math.random().toString(36).substring(2, 10);
+      const code = crypto.randomUUID().replace(/-/g, '').substring(0, 12);
 
       const { data: newTrinity } = await supabase
         .from('trinities')

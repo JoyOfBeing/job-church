@@ -1,6 +1,7 @@
 import './globals.css';
 import { AuthProvider } from '../components/AuthProvider';
 import Nav from '../components/Nav';
+import Footer from '../components/Footer';
 
 export const metadata = {
   title: 'JOB — The Joy of Being',
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <Nav />
           {children}
+          <Footer />
         </AuthProvider>
       </body>
     </html>

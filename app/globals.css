@@ -421,11 +421,11 @@ h3 {
 .truths-reveal .belief-ready::after {
   content: 'tap to reveal';
   position: absolute;
+  right: 0;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
   filter: blur(0);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;

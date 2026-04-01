@@ -493,6 +493,8 @@ h3 {
 
 .commitments {
   margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: center;
 }
 
 .commitments h2 {
@@ -505,6 +507,7 @@ h3 {
 
 .commitment-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 0;
@@ -516,10 +519,10 @@ h3 {
 .commitment-item input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
-  width: 22px;
-  height: 22px;
+  width: 48px;
+  height: 48px;
   border: 2px solid var(--border);
-  border-radius: 4px;
+  border-radius: 6px;
   background: transparent;
   cursor: pointer;
   flex-shrink: 0;
@@ -536,12 +539,12 @@ h3 {
 .commitment-item input[type="checkbox"]:checked::after {
   content: "";
   position: absolute;
-  top: 3px;
-  left: 6px;
-  width: 5px;
-  height: 10px;
+  top: 8px;
+  left: 16px;
+  width: 12px;
+  height: 22px;
   border: solid var(--bg);
-  border-width: 0 2px 2px 0;
+  border-width: 0 3px 3px 0;
   transform: rotate(45deg);
 }
 

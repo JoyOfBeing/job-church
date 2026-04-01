@@ -41,21 +41,13 @@ export default function Home() {
 
       <div className="landing-intro">
         <p>
-          J.O.B. is not here to save you. You don&apos;t need saving.
+          Maybe you lost the job, the faith, or the plot. Possibly all three.
         </p>
         <p>
+          J.O.B. is not here to save you. You don&apos;t need saving.
           You need people who&apos;ve done their own inner work and can help point
           you back to yourself. You need a place that holds grief and desire in
           the same room. You need permission to stop performing and start being.
-        </p>
-        <p>
-          Maybe you lost the job, the faith, or the plot. Possibly all three.
-          You&apos;re somewhere between &ldquo;I&apos;m figuring it out&rdquo;
-          and &ldquo;I don&apos;t know who I am anymore&rdquo; and honestly?
-          That&apos;s exactly where we want you.
-        </p>
-        <p className="landing-pullquote">
-          The breakdown is the beginning.
         </p>
         <p>
           J.O.B. is here to be the liminal space between who you are and who

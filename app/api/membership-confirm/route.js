@@ -19,7 +19,7 @@ export async function GET(request) {
   const amount = searchParams.get('amount');
 
   if (!email) {
-    return NextResponse.redirect(new URL('/membership?error=missing_email', request.url));
+    return NextResponse.redirect(new URL('/offering?error=missing_email', request.url));
   }
 
   const supabase = getAdminClient();
@@ -34,7 +34,7 @@ export async function GET(request) {
   if (!member) {
     // Donor email doesn't match a member — still redirect, they'll see the page
     console.error('No member found for email:', email);
-    return NextResponse.redirect(new URL('/membership?confirmed=true', request.url));
+    return NextResponse.redirect(new URL('/offering?confirmed=true', request.url));
   }
 
   const { error } = await supabase
@@ -49,10 +49,10 @@ export async function GET(request) {
 
   if (error) {
     console.error('Failed to confirm membership:', error);
-    return NextResponse.redirect(new URL('/membership?error=update_failed', request.url));
+    return NextResponse.redirect(new URL('/offering?error=update_failed', request.url));
   }
 
-  return NextResponse.redirect(new URL('/membership?confirmed=true', request.url));
+  return NextResponse.redirect(new URL('/offering?confirmed=true', request.url));
 }
 
 // POST — webhook handler for Donorbox (optional reliability layer)

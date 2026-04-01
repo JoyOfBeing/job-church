@@ -21,7 +21,7 @@ export default function DeprogrammingPage() {
       return;
     }
     if (!member?.is_committed) {
-      router.push('/membership');
+      router.push('/offering');
       return;
     }
     fetchData();

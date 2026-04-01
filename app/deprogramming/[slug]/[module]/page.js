@@ -20,7 +20,7 @@ export default function ModulePage() {
   useEffect(() => {
     if (loading) return;
     if (!user) { router.push('/login'); return; }
-    if (!member?.is_committed) { router.push('/membership'); return; }
+    if (!member?.is_committed) { router.push('/offering'); return; }
     fetchModule();
   }, [user, member, loading, slug, moduleNum]);
 

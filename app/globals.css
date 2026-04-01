@@ -731,6 +731,184 @@ textarea {
   margin-top: 1.5rem;
 }
 
+/* Braid — Why Three section on braid page */
+.braid-why-three {
+  margin-top: 2rem;
+  padding: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.braid-why-three h3 {
+  color: var(--glow-teal);
+  margin-bottom: 1rem;
+}
+.braid-why-three p {
+  color: #ccc;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+.braid-moves-compact {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: rgba(255,255,255,0.03);
+  border-radius: 8px;
+}
+.braid-moves-compact h4 {
+  color: var(--glow-purple);
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.braid-moves-compact ol {
+  list-style: none;
+  counter-reset: moves;
+  padding: 0;
+  margin: 0;
+}
+.braid-moves-compact ol li {
+  counter-increment: moves;
+  color: #bbb;
+  margin-bottom: 0.5rem;
+  padding-left: 1.75rem;
+  position: relative;
+  line-height: 1.5;
+}
+.braid-moves-compact ol li::before {
+  content: counter(moves);
+  position: absolute;
+  left: 0;
+  color: var(--glow-teal);
+  font-weight: 700;
+}
+
+/* Braid Guide — full page styles */
+.braid-triangle {
+  margin: 1.5rem 0;
+}
+.triangle-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.triangle-role {
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.triangle-role strong {
+  font-size: 1rem;
+}
+.triangle-role span {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #999;
+}
+.triangle-drama {
+  background: rgba(255, 80, 80, 0.08);
+  border: 1px solid rgba(255, 80, 80, 0.2);
+}
+.triangle-drama strong {
+  color: #ff6b6b;
+}
+.triangle-empowered {
+  background: rgba(45, 212, 191, 0.08);
+  border: 1px solid rgba(45, 212, 191, 0.2);
+}
+.triangle-empowered strong {
+  color: var(--glow-teal);
+}
+
+.braid-pullquote {
+  font-style: italic;
+  color: var(--glow-teal);
+  border-left: 3px solid var(--glow-purple);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+}
+
+.braid-moves {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+.braid-move {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.braid-move-number {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--glow-purple);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.braid-move-content strong {
+  color: var(--glow-teal);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.braid-move-content p {
+  color: #ccc;
+  margin: 0 0 0.25rem;
+  line-height: 1.5;
+}
+.braid-move-example {
+  font-size: 0.85rem;
+  color: #888;
+  font-style: italic;
+}
+
+.braid-sample {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.braid-sample-intro {
+  font-style: italic;
+  color: #999;
+}
+.braid-sample-msg {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+.braid-sample-who {
+  font-weight: 700;
+  color: var(--glow-teal);
+  margin-right: 0.75rem;
+}
+.braid-sample-time {
+  font-size: 0.8rem;
+  color: #666;
+}
+.braid-sample-msg p {
+  color: #ccc;
+  margin: 0.5rem 0 0;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .triangle-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 .braid-start-module {
   margin-top: 2rem;
   padding: 2rem;
@@ -2042,6 +2220,86 @@ textarea {
 .admin-badge-dim {
   background: rgba(255,255,255,0.05);
   color: var(--text-muted);
+}
+
+/* ============================================
+   LEGAL PAGES
+   ============================================ */
+
+.legal-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 6rem;
+  animation: fadeInSlow 0.8s ease;
+}
+
+.legal-page h1 {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.legal-updated {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 2.5rem;
+}
+
+.legal-content section {
+  margin-bottom: 2.5rem;
+}
+
+.legal-content h2 {
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+
+.legal-content h3 {
+  font-size: 0.95rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--glow-teal);
+}
+
+.legal-content p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 0.75rem;
+  color: var(--text-muted);
+}
+
+.legal-content ul,
+.legal-content ol {
+  padding-left: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.legal-content li {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.legal-content a {
+  color: var(--glow-teal);
+}
+
+.legal-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.legal-links a {
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.legal-links a:hover {
+  color: var(--glow-teal);
 }
 
 /* ============================================

@@ -6,7 +6,7 @@ import { useAuth } from './AuthProvider';
 
 const STEPS_TOP = [
   { label: 'Beliefs', path: '/doctrine', number: 1 },
-  { label: 'Threshold', path: '/threshold', number: 2 },
+  { label: 'Membership', path: '/membership', number: 2 },
   { label: 'Braid', path: '/braid', number: 3 },
   { label: 'SNL', path: '/snl', number: 4 },
 ];

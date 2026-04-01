@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useAuth } from '../../components/AuthProvider';
 import JourneyProgress from '../../components/JourneyProgress';
 
@@ -268,6 +269,35 @@ export default function TrinityPage() {
             </div>
           </div>
 
+          <div className="braid-why-three">
+            <h3>Why Three?</h3>
+            <p>
+              Two people become a mirror &mdash; agreement, argument, or echo chamber.
+              Three changes the geometry. Suddenly there&apos;s a witness. Someone who can
+              see what the other two cannot.
+            </p>
+            <p>
+              Most people default to the Drama Triangle: <strong>Victim</strong>, <strong>Persecutor</strong>, <strong>Rescuer</strong>.
+              Braiding shifts you to the empowered form: <strong>Coach</strong>, <strong>Challenger</strong>, <strong>Creator</strong>.
+              You weave between all three. That weaving is the braid.
+            </p>
+
+            <div className="braid-moves-compact">
+              <h4>The Five Moves</h4>
+              <ol>
+                <li><strong>Tell your truth</strong> &mdash; what&apos;s real right now</li>
+                <li><strong>Witness</strong> &mdash; reflect what you heard before fixing</li>
+                <li><strong>Challenge</strong> &mdash; name one honest edge with love</li>
+                <li><strong>Create</strong> &mdash; one concrete next step</li>
+                <li><strong>Keep it moving</strong> &mdash; don&apos;t over-process</li>
+              </ol>
+            </div>
+
+            <Link href="/braid-guide" className="btn btn-secondary" style={{ marginTop: '1rem' }}>
+              Read the full Braid Up guide
+            </Link>
+          </div>
+
           {createError && <div className="error-msg">{createError}</div>}
 
           <div className="braid-start-module">
@@ -391,6 +421,35 @@ export default function TrinityPage() {
                 Join Sharecast &mdash; coming soon
               </a>
             </div>
+          </div>
+
+          <div className="braid-why-three">
+            <h3>Why Three?</h3>
+            <p>
+              Two people become a mirror &mdash; agreement, argument, or echo chamber.
+              Three changes the geometry. Suddenly there&apos;s a witness. Someone who can
+              see what the other two cannot.
+            </p>
+            <p>
+              Most people default to the Drama Triangle: <strong>Victim</strong>, <strong>Persecutor</strong>, <strong>Rescuer</strong>.
+              Braiding shifts you to the empowered form: <strong>Coach</strong>, <strong>Challenger</strong>, <strong>Creator</strong>.
+              You weave between all three. That weaving is the braid.
+            </p>
+
+            <div className="braid-moves-compact">
+              <h4>The Five Moves</h4>
+              <ol>
+                <li><strong>Tell your truth</strong> &mdash; what&apos;s real right now</li>
+                <li><strong>Witness</strong> &mdash; reflect what you heard before fixing</li>
+                <li><strong>Challenge</strong> &mdash; name one honest edge with love</li>
+                <li><strong>Create</strong> &mdash; one concrete next step</li>
+                <li><strong>Keep it moving</strong> &mdash; don&apos;t over-process</li>
+              </ol>
+            </div>
+
+            <Link href="/braid-guide" className="btn btn-secondary" style={{ marginTop: '1rem' }}>
+              Read the full Braid Up guide
+            </Link>
           </div>
         </>
       )}

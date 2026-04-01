@@ -6,18 +6,18 @@ import { useAuth } from '../../components/AuthProvider';
 import JourneyProgress from '../../components/JourneyProgress';
 
 const BELIEFS = [
-  { text: 'Being human is the job.', sub: 'Everything else is secondary.' },
-  { text: 'You already have what you need.', sub: 'You\u2019re not broken. You\u2019re not lacking.' },
-  { text: 'The path is never certain.', sub: 'You walk it into existence.' },
+  { text: 'Being human is the job.', sub: 'The fragmentation of work and soul did humanity a huge injustice. We\u2019re here to reintegrate.' },
+  { text: 'You\u2019re the one you\u2019ve been waiting for.', sub: 'You\u2019re not broken. You have everything you need inside of you.' },
+  { text: 'We follow emergence over certainty.', sub: 'Nothing in life is certain. And trying to control things gets us stuck.' },
   { text: 'Grief and suffering are part of it.', sub: 'You don\u2019t get to bypass them.' },
-  { text: 'You can\u2019t do this alone.', sub: 'You need people who see you clearly.' },
-  { text: 'Telling the truth moves things.', sub: 'Even when it costs you.' },
-  { text: 'Your body knows before your mind does.', sub: 'Learn how to listen to it.' },
-  { text: 'What you want matters.', sub: 'More than what you think you should want.' },
-  { text: 'Your gifts aren\u2019t just for you.', sub: 'They become magic when you offer them.' },
-  { text: 'The sacred isn\u2019t somewhere else.', sub: 'Everything is sacred, even you.' },
-  { text: 'You\u2019re allowed to enjoy being here.', sub: 'Aliveness is the prerequisite to the final step.' },
-  { text: 'You\u2019re invited to co-create a new reality.', sub: 'But in order to build something new, you must first become it.' },
+  { text: 'Everything\u2019s a mirror.', sub: 'No one can walk your path but you, but you don\u2019t have to do it alone.' },
+  { text: 'Reality is subjective.', sub: 'Your truth matters. And so does someone else\u2019s. If you can\u2019t create a shared reality, that\u2019s ok. There can still be love there.' },
+  { text: 'We trust in multi-intelligence.', sub: 'Your body knows before your mind does. Learn how to listen to it.' },
+  { text: 'What you want matters.', sub: 'Life force energy comes from desire. Shadow comes from suppressing it. Creation itself comes from want.' },
+  { text: 'You are the magic.', sub: 'Figure out who you are and then share it. Your magic is the offering.' },
+  { text: 'Everything is sacred, even you.', sub: 'As above, so below. As without, so within.' },
+  { text: 'You\u2019re allowed to enjoy being human.', sub: 'Following your aliveness is the secret to healing the trauma of coming into form.' },
+  { text: 'Your soul has a unique purpose in co-creating a new reality.', sub: 'But in order to build something new, you must first become it.' },
 ];
 
 export default function DoctrinePage() {
@@ -181,7 +181,7 @@ export default function DoctrinePage() {
         sessionStorage.removeItem('join_code');
         router.push(`/join/${joinCode}`);
       } else {
-        router.push('/threshold');
+        router.push('/membership');
       }
     } catch (err) {
       setError('Something went wrong. Please try again.');
@@ -241,6 +241,12 @@ export default function DoctrinePage() {
                 placeholder="(555) 123-4567"
               />
             </div>
+
+            <p style={{ fontSize: '0.8rem', color: '#999aab', lineHeight: 1.6 }}>
+              By joining, you agree to our{' '}
+              <a href="/terms" target="_blank" style={{ color: '#2dd4bf' }}>Terms of Membership</a> and{' '}
+              <a href="/privacy" target="_blank" style={{ color: '#2dd4bf' }}>Privacy Policy</a>.
+            </p>
 
             <button
               type="submit"

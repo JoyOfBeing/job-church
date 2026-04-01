@@ -21,7 +21,7 @@ export default function TrackDetailPage() {
   useEffect(() => {
     if (loading) return;
     if (!user) { router.push('/login'); return; }
-    if (!member?.is_committed) { router.push('/membership'); return; }
+    if (!member?.is_committed) { router.push('/offering'); return; }
     fetchTrack();
   }, [user, member, loading, slug]);
 

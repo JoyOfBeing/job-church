@@ -23,7 +23,7 @@ export default function ElderProfilePage() {
   useEffect(() => {
     if (loading) return;
     if (!user) { router.push('/login'); return; }
-    if (!member?.is_committed) { router.push('/membership'); return; }
+    if (!member?.is_committed) { router.push('/offering'); return; }
     fetchElder();
   }, [user, member, loading, id]);
 

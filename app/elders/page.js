@@ -16,7 +16,7 @@ export default function EldersPage() {
   useEffect(() => {
     if (loading) return;
     if (!user) { router.push('/login'); return; }
-    if (!member?.is_committed) { router.push('/membership'); return; }
+    if (!member?.is_committed) { router.push('/offering'); return; }
     fetchElders();
   }, [user, member, loading]);
 

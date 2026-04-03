@@ -23,16 +23,25 @@ export default function ThresholdPage() {
       <JourneyProgress completedSteps={[1]} />
       <h1>Welcome to: The Joy of Being</h1>
       <p className="threshold-intro">
-        As a member of our church, you&apos;ll get access to services,
-        deprogramming, and community. For anyone who&apos;s done deep inner
-        work and is ready to serve, we&apos;ll be happy to consider you as
-        an elder. For everyone else who is still on their way in discovering
-        their J.O.B., we&apos;re honored to play a part in your becoming.
+        As a member of our church, you&apos;ll get access to services, regularly
+        scheduled deprogramming, Magic Shows, and resonate community.
+      </p>
+      <p className="threshold-intro">
+        For anyone who&apos;s done their deep inner work and feels ready to guide,
+        there will be many paths to that. Maybe you&apos;ll be a somatic guide at a
+        Magic Show. Maybe we&apos;ll invite you to become a church elder. Hell, we
+        may even ordain you.
+      </p>
+      <p className="threshold-intro">
+        For everyone else who is still discovering their J.O.B., we&apos;re honored
+        to play a part in the awakening and embodiment of who you really are.
       </p>
 
-      <h2 className="threshold-video-header">Show us who you are and who you&apos;re becoming</h2>
+      <h2 className="threshold-video-header">
+        Now that you&apos;re here. Who are you? Who were you? Who might you be becoming?
+      </h2>
       <p className="threshold-video-sub">
-        Use this link regularly to re-introduce yourself as you change.
+        And please, use this link periodically to re-introduce yourself as you evolve.
       </p>
 
       <div className="videoask-embed">

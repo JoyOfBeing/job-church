@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../../components/AuthProvider';
 import JourneyProgress from '../../components/JourneyProgress';
@@ -25,9 +25,6 @@ export default function DoctrinePage() {
   const { user, supabase, fetchMember } = useAuth();
   const [agreed, setAgreed] = useState(false);
   const [error, setError] = useState('');
-  const [revealedCount, setRevealedCount] = useState(0);
-  const allRevealed = revealedCount >= BELIEFS.length;
-  const beliefRefs = useRef([]);
 
   // OTP state
   const [email, setEmail] = useState('');
@@ -42,19 +39,6 @@ export default function DoctrinePage() {
   const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
   const [submitting, setSubmitting] = useState(false);
-
-  function revealBelief(index) {
-    if (index !== revealedCount) return;
-    const next = revealedCount + 1;
-    setRevealedCount(next);
-    // Scroll the next belief into view (or the breath-pause if all revealed)
-    setTimeout(() => {
-      const target = beliefRefs.current[next] || document.querySelector('.breath-pause');
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    }, 300);
-  }
 
   // When user signs in via OAuth and returns, check if they need profile info
   useEffect(() => {
@@ -293,49 +277,29 @@ export default function DoctrinePage() {
       <h1>The J.O.B. Doctrine</h1>
       <p className="doctrine-subtitle">The 12 steps back to you</p>
 
-      <ol className="truths truths-reveal">
-        {BELIEFS.map((belief, i) => {
-          const isRevealed = i < revealedCount;
-          const isReady = i === revealedCount;
-          return (
-            <li
-              key={i}
-              ref={el => beliefRefs.current[i] = el}
-              className={
-                isRevealed ? 'belief-revealed' :
-                isReady ? 'belief-ready' :
-                'belief-hidden'
-              }
-              onClick={() => revealBelief(i)}
-              role={isReady ? 'button' : undefined}
-              tabIndex={isReady ? 0 : undefined}
-              onKeyDown={isReady ? (e) => { if (e.key === 'Enter' || e.key === ' ') revealBelief(i); } : undefined}
-            >
-              {belief.text}
-              <span className="belief-sub">{belief.sub}</span>
-            </li>
-          );
-        })}
+      <ol className="truths">
+        {BELIEFS.map((belief, i) => (
+          <li key={i}>
+            {belief.text}
+            <span className="belief-sub">{belief.sub}</span>
+          </li>
+        ))}
       </ol>
 
-      {allRevealed && (
-        <>
-          <div className="breath-pause">
-            Are you willing to put these beliefs into practice?
-          </div>
+      <div className="breath-pause">
+        Are you willing to put these beliefs into practice?
+      </div>
 
-          <div className="commitments">
-            <label className="commitment-item">
-              <input
-                type="checkbox"
-                checked={agreed}
-                onChange={() => setAgreed(!agreed)}
-              />
-              <span>I AM</span>
-            </label>
-          </div>
-        </>
-      )}
+      <div className="commitments">
+        <label className="commitment-item">
+          <input
+            type="checkbox"
+            checked={agreed}
+            onChange={() => setAgreed(!agreed)}
+          />
+          <span>I AM</span>
+        </label>
+      </div>
 
       {agreed && (
         <div className="signup-form">

@@ -260,42 +260,14 @@ export default function TrinityPage() {
                 Download Marco Polo
               </a>
               <a
-                href="#"
+                href="https://onmarcopolo.com/sharecast/LCx7627imhwO"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-gold"
-                style={{ opacity: 0.5, pointerEvents: 'none' }}
               >
-                Join Sharecast &mdash; coming soon
+                Join Sharecast
               </a>
             </div>
-          </div>
-
-          <div className="braid-why-three">
-            <h3>Why Three?</h3>
-            <p>
-              Two people become a mirror &mdash; agreement, argument, or echo chamber.
-              Three changes the geometry. Suddenly there&apos;s a witness. Someone who can
-              see what the other two cannot.
-            </p>
-            <p>
-              Most people default to the Drama Triangle: <strong>Victim</strong>, <strong>Persecutor</strong>, <strong>Rescuer</strong>.
-              Braiding shifts you to the empowered form: <strong>Coach</strong>, <strong>Challenger</strong>, <strong>Creator</strong>.
-              You weave between all three. That weaving is the braid.
-            </p>
-
-            <div className="braid-moves-compact">
-              <h4>The Five Moves</h4>
-              <ol>
-                <li><strong>Tell your truth</strong> &mdash; what&apos;s real right now</li>
-                <li><strong>Witness</strong> &mdash; reflect what you heard before fixing</li>
-                <li><strong>Challenge</strong> &mdash; name one honest edge with love</li>
-                <li><strong>Create</strong> &mdash; one concrete next step</li>
-                <li><strong>Keep it moving</strong> &mdash; don&apos;t over-process</li>
-              </ol>
-            </div>
-
-            <Link href="/braid-guide" className="btn btn-secondary" style={{ marginTop: '1rem' }}>
-              Read the full Braid Up guide
-            </Link>
           </div>
 
           {createError && <div className="error-msg">{createError}</div>}
@@ -381,14 +353,9 @@ export default function TrinityPage() {
             );
           })}
 
+          {createError && <div className="error-msg">{createError}</div>}
+
           <div className="practice-section">
-            <p className="subtitle" style={{ fontStyle: 'italic' }}>
-              Each braid serves a different part of your becoming.
-              Some people have one. Some have three. There&apos;s no wrong number.
-            </p>
-
-            {createError && <div className="error-msg">{createError}</div>}
-
             <button
               className="btn btn-secondary"
               onClick={createTrinity}
@@ -399,10 +366,11 @@ export default function TrinityPage() {
           </div>
 
           <div className="practice-section">
-            <h3>Get Marco Polo</h3>
+            <h3>Your portal: Marco Polo</h3>
             <p>
-              This is how braids communicate. Download the app and join our Sharecast
-              to see it in action.
+              Braids don&apos;t text. They talk. Marco Polo is the app &mdash; async
+              video so raw it&apos;ll ruin regular messaging for you. Download it.
+              Join our Sharecast. See what this looks like when people stop performing.
             </p>
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
               <a
@@ -414,42 +382,14 @@ export default function TrinityPage() {
                 Download Marco Polo
               </a>
               <a
-                href="#"
+                href="https://onmarcopolo.com/sharecast/LCx7627imhwO"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-gold"
-                style={{ opacity: 0.5, pointerEvents: 'none' }}
               >
-                Join Sharecast &mdash; coming soon
+                Join Sharecast
               </a>
             </div>
-          </div>
-
-          <div className="braid-why-three">
-            <h3>Why Three?</h3>
-            <p>
-              Two people become a mirror &mdash; agreement, argument, or echo chamber.
-              Three changes the geometry. Suddenly there&apos;s a witness. Someone who can
-              see what the other two cannot.
-            </p>
-            <p>
-              Most people default to the Drama Triangle: <strong>Victim</strong>, <strong>Persecutor</strong>, <strong>Rescuer</strong>.
-              Braiding shifts you to the empowered form: <strong>Coach</strong>, <strong>Challenger</strong>, <strong>Creator</strong>.
-              You weave between all three. That weaving is the braid.
-            </p>
-
-            <div className="braid-moves-compact">
-              <h4>The Five Moves</h4>
-              <ol>
-                <li><strong>Tell your truth</strong> &mdash; what&apos;s real right now</li>
-                <li><strong>Witness</strong> &mdash; reflect what you heard before fixing</li>
-                <li><strong>Challenge</strong> &mdash; name one honest edge with love</li>
-                <li><strong>Create</strong> &mdash; one concrete next step</li>
-                <li><strong>Keep it moving</strong> &mdash; don&apos;t over-process</li>
-              </ol>
-            </div>
-
-            <Link href="/braid-guide" className="btn btn-secondary" style={{ marginTop: '1rem' }}>
-              Read the full Braid Up guide
-            </Link>
           </div>
         </>
       )}

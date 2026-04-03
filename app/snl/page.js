@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useAuth } from '../../components/AuthProvider';
 import JourneyProgress from '../../components/JourneyProgress';
 
@@ -17,20 +18,16 @@ export default function SNLPage() {
       router.push('/login');
       return;
     }
-    fetchGatherings();
-  }, [user, loading]);
+    if (supabase) fetchGatherings();
+  }, [user, loading, supabase]);
 
   async function fetchGatherings() {
-    try {
-      const { data } = await supabase
-        .from('gatherings')
-        .select('*')
-        .order('date', { ascending: false });
+    const { data, error } = await supabase
+      .from('gatherings')
+      .select('*')
+      .order('date', { ascending: false });
 
-      if (data) setGatherings(data);
-    } catch (e) {
-      // table may not exist yet
-    }
+    if (data) setGatherings(data);
     setLoadingData(false);
   }
 
@@ -53,13 +50,8 @@ export default function SNLPage() {
 
       <p className="snl-intro">
         SNL is a monthly gathering for members. Part comedy show. Part church
-        service. Part &ldquo;here&apos;s how J.O.B. is emerging, let&apos;s
-        fucking go.&rdquo;
-      </p>
-
-      <p className="snl-intro">
-        It&apos;s co-created. That means you&apos;re not always watching,
-        sometimes you&apos;re the one in it.
+        service. It&apos;s co-created by the elders and by you. That means
+        you&apos;re not always watching &mdash; sometimes you&apos;re the one in it.
       </p>
 
       {upcoming.length > 0 && (
@@ -124,15 +116,29 @@ export default function SNLPage() {
         </div>
       )}
 
-      <div className="whats-next">
-        <h3>Ready to go deeper?</h3>
+      <div className="elder-callout">
+        <h3>Done the work? Ready to hold space for others?</h3>
         <p>
-          You&apos;ve shown up. You&apos;ve been braided. You&apos;ve watched the (de)programming.
-          Now there&apos;s a choice in front of you.
+          Elders aren&apos;t recruited. They&apos;re recognized. Elders are the
+          ones who guide members through deprogramming &mdash; helping you
+          deconstruct old conditioning, integrate after plant medicine journeys,
+          and find your way back to yourself. If you&apos;ve walked through your
+          own fire and come out the other side, we may want to talk.
         </p>
-        <a href="/offering" className="btn btn-gold" style={{ marginTop: '0.5rem' }}>
-          Cross the next threshold
-        </a>
+        <Link href="/elder-apply" className="btn btn-secondary">
+          Tell Us Who You Are
+        </Link>
+      </div>
+
+      <div className="whats-next">
+        <h3>Ready for your next step?</h3>
+        <p>
+          You&apos;ve shown up. You&apos;ve started your braid. You&apos;ve sat
+          in service. Here&apos;s where the real transformation begins.
+        </p>
+        <Link href="/deprogramming" className="btn btn-gold" style={{ marginTop: '0.5rem' }}>
+          Deprogramming
+        </Link>
       </div>
     </div>
   );

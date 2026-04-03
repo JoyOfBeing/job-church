@@ -2,7 +2,6 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function Home() {
   const choirRef = useRef(null);
@@ -28,16 +27,6 @@ export default function Home() {
         <p className="landing-tagline"></p>
       </div>
 
-      <div className="landing-badge">
-        <Image
-          src="/job-badge.png"
-          alt="J.O.B. employee badge"
-          width={1280}
-          height={960}
-          priority
-          style={{ width: '100%', maxWidth: '560px', height: 'auto' }}
-        />
-      </div>
 
       <div className="landing-intro">
         <p>
@@ -48,6 +37,12 @@ export default function Home() {
           You need people who&apos;ve done their own inner work and can help point
           you back to yourself. You need a place that holds grief and desire in
           the same room. You need permission to stop performing and start being.
+          You need permission to play.
+        </p>
+        <p>
+          This is the only church with no answers &mdash; only questions.
+          We don&apos;t point you to a book, a prophet, or a middleman.
+          Your access to the divine is through yourself.
         </p>
         <p>
           J.O.B. is here to be the liminal space between who you are and who

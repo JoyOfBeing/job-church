@@ -233,6 +233,120 @@ h3 {
   line-height: 1.5 !important;
 }
 
+/* Elder callout on home page */
+.elder-callout {
+  margin-top: 2.5rem;
+  padding: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  text-align: center;
+}
+.elder-callout h3 {
+  color: var(--glow-teal);
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+.elder-callout p {
+  color: #999aab;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Elder application page */
+.elder-apply-page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+.elder-apply-page h1 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.elder-apply-intro {
+  color: #999aab;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+}
+.elder-apply-what {
+  margin-bottom: 2.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.elder-apply-what h3 {
+  color: var(--glow-teal);
+  margin-bottom: 1rem;
+}
+.elder-apply-what ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.elder-apply-what li {
+  color: #ccc;
+  line-height: 1.6;
+  padding: 0.4rem 0 0.4rem 1.25rem;
+  position: relative;
+}
+.elder-apply-what li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--glow-purple);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.elder-apply-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.elder-apply-form textarea {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 0.75rem 1rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+.elder-apply-form textarea:focus {
+  outline: none;
+  border-color: var(--glow-purple);
+}
+.field-hint {
+  font-size: 0.85rem;
+  color: #777;
+  line-height: 1.5;
+  margin: 0.25rem 0 0.5rem;
+}
+.field-optional {
+  font-weight: 400;
+  color: #666;
+  font-size: 0.85rem;
+}
+.elder-apply-success {
+  text-align: center;
+  padding: 4rem 1rem;
+}
+.elder-apply-success h1 {
+  margin-bottom: 1rem;
+}
+.elder-apply-success p {
+  color: #999aab;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
 .video-embed {
   position: relative;
   width: 100%;
@@ -2223,6 +2337,101 @@ textarea {
 .admin-badge-dim {
   background: rgba(255,255,255,0.05);
   color: var(--text-muted);
+}
+
+/* Dashboard: Funnel */
+.funnel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.funnel-step {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.funnel-bar-wrap {
+  background: rgba(255,255,255,0.05);
+  border-radius: 4px;
+  height: 28px;
+  overflow: hidden;
+}
+
+.funnel-bar {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.funnel-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.funnel-name {
+  color: var(--text-muted);
+}
+
+.funnel-count {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.funnel-dropoff {
+  color: #e57373;
+  font-size: 0.8rem;
+}
+
+/* Dashboard: Growth Tables */
+.growth-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.growth-table th {
+  text-align: left;
+  color: var(--text-muted);
+  font-weight: 500;
+  padding: 0.4rem 0.75rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.growth-table td {
+  padding: 0.4rem 0.75rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Dashboard: Revenue */
+.revenue-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.revenue-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.revenue-amount {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.revenue-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
 }
 
 /* ============================================

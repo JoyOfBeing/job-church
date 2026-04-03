@@ -15,6 +15,7 @@ export default function AdminPage() {
   const [tracks, setTracks] = useState([]);
   const [elders, setElders] = useState([]);
   const [enrollments, setEnrollments] = useState([]);
+  const [elderApps, setElderApps] = useState([]);
   const [loadingData, setLoadingData] = useState(true);
 
   // Gathering form
@@ -49,7 +50,7 @@ export default function AdminPage() {
   }, [user, member, loading]);
 
   async function fetchData() {
-    const [membersRes, braidsRes, tmRes, gatheringsRes, tracksRes, eldersRes, enrollRes] = await Promise.all([
+    const [membersRes, braidsRes, tmRes, gatheringsRes, tracksRes, eldersRes, enrollRes, elderAppsRes] = await Promise.all([
       supabase.from('members').select('*').order('joined_at', { ascending: false }),
       supabase.from('trinities').select('*').order('created_at', { ascending: false }),
       supabase.from('trinity_members').select('*, members(name, email)'),
@@ -57,6 +58,7 @@ export default function AdminPage() {
       supabase.from('tracks').select('*').order('created_at', { ascending: false }),
       supabase.from('elders').select('*').order('created_at', { ascending: false }),
       supabase.from('enrollments').select('*, members(name, email), tracks(title)').order('enrolled_at', { ascending: false }),
+      supabase.from('elder_applications').select('*').order('created_at', { ascending: false }),
     ]);
 
     if (membersRes.data) {
@@ -79,6 +81,7 @@ export default function AdminPage() {
     if (tracksRes.data) setTracks(tracksRes.data);
     if (eldersRes.data) setElders(eldersRes.data);
     if (enrollRes.data) setEnrollments(enrollRes.data);
+    if (elderAppsRes.data) setElderApps(elderAppsRes.data);
 
     setLoadingData(false);
   }
@@ -148,6 +151,11 @@ export default function AdminPage() {
     fetchData();
   }
 
+  async function updateAppStatus(id, status) {
+    await supabase.from('elder_applications').update({ status }).eq('id', id);
+    fetchData();
+  }
+
   async function toggleElderActive(elder) {
     await supabase.from('elders').update({ is_active: !elder.is_active }).eq('id', elder.id);
     fetchData();
@@ -159,10 +167,129 @@ export default function AdminPage() {
 
   if (!member?.is_admin) return null;
 
+  // — Funnel metrics —
+  const totalMembers = members.length;
+  const braidedIds = new Set();
+  Object.values(braidMembers).forEach(group => {
+    group.forEach(tm => { if (tm.member_id) braidedIds.add(tm.member_id); });
+  });
+  const braidedCount = braidedIds.size;
+  const committedCount = members.filter(m => m.is_committed).length;
+  const enrolledIds = new Set(enrollments.map(e => e.member_id));
+  const enrolledCount = enrolledIds.size;
+  const coreCompleteCount = members.filter(m => m.core_track_completed).length;
+
+  const funnel = [
+    { label: 'Members', count: totalMembers },
+    { label: 'Braided', count: braidedCount },
+    { label: 'Committed', count: committedCount },
+    { label: 'Enrolled', count: enrolledCount },
+    { label: 'Core Complete', count: coreCompleteCount },
+  ];
+
+  // — Growth: group members by month —
+  function groupByMonth(items, dateField) {
+    const months = {};
+    items.forEach(item => {
+      const d = item[dateField];
+      if (!d) return;
+      const key = d.slice(0, 7); // "2026-03"
+      months[key] = (months[key] || 0) + 1;
+    });
+    return Object.entries(months).sort((a, b) => a[0].localeCompare(b[0]));
+  }
+
+  const membersByMonth = groupByMonth(members, 'joined_at');
+  const committedMembers = members.filter(m => m.is_committed);
+  const committedByMonth = groupByMonth(committedMembers, 'committed_at');
+
+  function formatMonth(key) {
+    const [y, m] = key.split('-');
+    const date = new Date(parseInt(y), parseInt(m) - 1);
+    return date.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
+  }
+
   return (
     <div className="admin">
       <h1>Admin</h1>
       <p className="subtitle">Manage members, braids, and gatherings.</p>
+
+      {/* DASHBOARD */}
+      <div className="admin-section">
+        <h2>Dashboard</h2>
+
+        <h3 style={{ marginBottom: '0.75rem' }}>Funnel</h3>
+        <div className="funnel">
+          {funnel.map((step, i) => {
+            const pct = totalMembers > 0 ? Math.round((step.count / totalMembers) * 100) : 0;
+            const dropoff = i > 0 ? funnel[i - 1].count - step.count : null;
+            return (
+              <div key={step.label} className="funnel-step">
+                <div className="funnel-bar-wrap">
+                  <div className="funnel-bar" style={{ width: `${Math.max(pct, 4)}%` }} />
+                </div>
+                <div className="funnel-label">
+                  <span className="funnel-name">{step.label}</span>
+                  <span className="funnel-count">{step.count}</span>
+                  {dropoff !== null && dropoff > 0 && (
+                    <span className="funnel-dropoff">-{dropoff}</span>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <h3 style={{ marginTop: '2rem', marginBottom: '0.75rem' }}>Growth</h3>
+        <div className="growth-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>New Members</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {membersByMonth.map(([month, count], i) => {
+                const cumulative = membersByMonth.slice(0, i + 1).reduce((s, [, c]) => s + c, 0);
+                return (
+                  <tr key={month}>
+                    <td>{formatMonth(month)}</td>
+                    <td>{count}</td>
+                    <td>{cumulative}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+
+          {committedByMonth.length > 0 && (
+            <table style={{ marginTop: '1rem' }}>
+              <thead>
+                <tr>
+                  <th>Month</th>
+                  <th>New Committed</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {committedByMonth.map(([month, count], i) => {
+                  const cumulative = committedByMonth.slice(0, i + 1).reduce((s, [, c]) => s + c, 0);
+                  return (
+                    <tr key={month}>
+                      <td>{formatMonth(month)}</td>
+                      <td>{count}</td>
+                      <td>{cumulative}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          )}
+        </div>
+
+      </div>
 
       <div className="admin-section">
         <h2>Members ({members.length})</h2>
@@ -339,6 +466,63 @@ export default function AdminPage() {
           </div>
         ))}
         {tracks.length === 0 && <p className="section-desc">No tracks yet.</p>}
+      </div>
+
+      {/* ELDER APPLICATIONS */}
+      <div className="admin-section">
+        <h2>Elder Interest ({elderApps.length})</h2>
+        <p className="section-desc">People who&apos;ve expressed interest in serving as an elder.</p>
+        {elderApps.map(app => (
+          <div key={app.id} className="member-card">
+            <div className="member-header">
+              <div style={{ flex: 1 }}>
+                <div className="member-name">
+                  {app.name}
+                  <span className={`admin-badge ${
+                    app.status === 'accepted' ? 'admin-badge-green' :
+                    app.status === 'reviewing' ? 'admin-badge-gold' :
+                    app.status === 'declined' ? 'admin-badge-dim' : ''
+                  }`}>
+                    {' '}{app.status}
+                  </span>
+                </div>
+                <div className="member-email">{app.email}{app.phone ? ` — ${app.phone}` : ''}</div>
+                <div className="member-email">{app.location}</div>
+                <details style={{ marginTop: '0.5rem' }}>
+                  <summary style={{ cursor: 'pointer', opacity: 0.7 }}>View full response</summary>
+                  <div style={{ marginTop: '0.5rem', fontSize: '0.85rem', lineHeight: 1.5 }}>
+                    <p><strong>Background:</strong> {app.background}</p>
+                    <p><strong>Deconstruction:</strong> {app.deconstruction}</p>
+                    {app.plant_medicine && <p><strong>Plant medicine:</strong> {app.plant_medicine}</p>}
+                    <p><strong>Ceremony:</strong> {app.ceremony}</p>
+                    <p><strong>Modalities:</strong> {app.modalities}</p>
+                    <p><strong>Why elder:</strong> {app.why_elder}</p>
+                    <p><strong>Availability:</strong> {app.availability}</p>
+                    {app.links && <p><strong>Links:</strong> {app.links}</p>}
+                  </div>
+                </details>
+              </div>
+              <div style={{ display: 'flex', gap: '0.5rem', alignSelf: 'flex-start' }}>
+                {app.status !== 'reviewing' && (
+                  <button className="btn btn-secondary btn-sm" onClick={() => updateAppStatus(app.id, 'reviewing')}>
+                    Review
+                  </button>
+                )}
+                {app.status !== 'accepted' && (
+                  <button className="btn btn-secondary btn-sm" onClick={() => updateAppStatus(app.id, 'accepted')}>
+                    Accept
+                  </button>
+                )}
+                {app.status !== 'declined' && (
+                  <button className="btn btn-secondary btn-sm" onClick={() => updateAppStatus(app.id, 'declined')}>
+                    Decline
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+        {elderApps.length === 0 && <p className="section-desc">No submissions yet.</p>}
       </div>
 
       {/* ELDERS */}

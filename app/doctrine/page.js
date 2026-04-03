@@ -38,7 +38,8 @@ export default function DoctrinePage() {
 
   // Profile completion state (shown after auth)
   const [showProfile, setShowProfile] = useState(false);
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
@@ -165,13 +166,27 @@ export default function DoctrinePage() {
   async function handleProfileSubmit(e) {
     e.preventDefault();
     setError('');
+
+    if (!firstName.trim()) {
+      setError('Please enter your first name.');
+      return;
+    }
+    if (!lastName.trim()) {
+      setError('Please enter your last name.');
+      return;
+    }
+    if (!phone.trim()) {
+      setError('Please enter your phone number.');
+      return;
+    }
+
     setSubmitting(true);
 
     try {
       const currentUser = user || (await supabase.auth.getUser()).data.user;
       await supabase
         .from('members')
-        .update({ name, phone })
+        .update({ name: `${firstName.trim()} ${lastName.trim()}`, phone: phone.trim() })
         .eq('id', currentUser.id);
 
       await fetchMember(currentUser.id);
@@ -222,12 +237,23 @@ export default function DoctrinePage() {
         <div className="signup-form">
           <form onSubmit={handleProfileSubmit}>
             <div className="field">
-              <label>Name</label>
+              <label>First Name</label>
               <input
                 type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Your name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="First name"
+                required
+              />
+            </div>
+
+            <div className="field">
+              <label>Last Name</label>
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Last name"
                 required
               />
             </div>
@@ -239,6 +265,7 @@ export default function DoctrinePage() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="(555) 123-4567"
+                required
               />
             </div>
 

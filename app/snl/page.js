@@ -116,20 +116,6 @@ export default function SNLPage() {
         </div>
       )}
 
-      <div className="elder-callout">
-        <h3>Done the work? Ready to hold space for others?</h3>
-        <p>
-          Elders aren&apos;t recruited. They&apos;re recognized. Elders are the
-          ones who guide members through deprogramming &mdash; helping you
-          deconstruct old conditioning, integrate after plant medicine journeys,
-          and find your way back to yourself. If you&apos;ve walked through your
-          own fire and come out the other side, we may want to talk.
-        </p>
-        <Link href="/elder-apply" className="btn btn-secondary">
-          Tell Us Who You Are
-        </Link>
-      </div>
-
       <div className="whats-next">
         <h3>Ready for your next step?</h3>
         <p>

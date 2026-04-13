@@ -17,8 +17,9 @@ export default function JourneyProgress({ completedSteps = [] }) {
   // Unlock Deprogramming when committed, keep others locked for now
   const STEPS_BOTTOM = [
     { label: 'Deprogramming', path: member?.is_committed ? '/deprogramming' : null, number: 5 },
-    { label: 'Magic Show', path: null, number: 6 },
-    { label: 'Resources', path: null, number: 7 },
+    { label: 'Elder Path', path: '/elder-path', number: 6 },
+    { label: 'Magic Show', path: null, number: 7 },
+    { label: 'Resources', path: null, number: 8 },
   ];
   const pathname = usePathname();
   const allSteps = [...STEPS_TOP, ...STEPS_BOTTOM];

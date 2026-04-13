@@ -256,6 +256,67 @@ h3 {
   margin-right: auto;
 }
 
+/* Elder Path page */
+.elder-path-page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+.elder-path-page h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.75rem;
+}
+.elder-path-intro {
+  color: #999aab;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+}
+.elder-path-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.elder-path-card {
+  padding: 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.elder-path-card h2 {
+  font-size: 1.1rem;
+  color: var(--glow-teal);
+  margin-bottom: 0.75rem;
+}
+.elder-path-card p {
+  color: #999aab;
+  line-height: 1.7;
+}
+.elder-path-card-cta {
+  text-align: center;
+  border-color: var(--glow-teal);
+}
+.elder-path-directory {
+  text-align: center;
+  padding: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.elder-path-directory h2 {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+.elder-path-directory p {
+  color: #999aab;
+  line-height: 1.7;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Elder application page */
 .elder-apply-page {
   max-width: 680px;

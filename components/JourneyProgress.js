@@ -18,8 +18,7 @@ export default function JourneyProgress({ completedSteps = [] }) {
   const STEPS_BOTTOM = [
     { label: 'Deprogramming', path: member?.is_committed ? '/deprogramming' : null, number: 5 },
     { label: 'Magic Show', path: null, number: 6 },
-    { label: 'JOB Board', path: null, number: 7 },
-    { label: 'Hold Co', path: null, number: 8 },
+    { label: 'Resources', path: null, number: 7 },
   ];
   const pathname = usePathname();
   const allSteps = [...STEPS_TOP, ...STEPS_BOTTOM];

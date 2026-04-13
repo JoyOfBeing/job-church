@@ -6,18 +6,18 @@ import { useAuth } from '../../components/AuthProvider';
 import JourneyProgress from '../../components/JourneyProgress';
 
 const BELIEFS = [
-  { text: 'Being human is the job.', sub: 'The fragmentation of work and soul did humanity a huge injustice. We\u2019re here to reintegrate.' },
-  { text: 'You\u2019re the one you\u2019ve been waiting for.', sub: 'You\u2019re not broken. You have everything you need inside of you.' },
-  { text: 'We follow emergence over certainty.', sub: 'Nothing in life is certain. And trying to control things gets us stuck.' },
-  { text: 'Grief and suffering are part of it.', sub: 'You don\u2019t get to bypass them.' },
-  { text: 'Everything\u2019s a mirror.', sub: 'No one can walk your path but you, but you don\u2019t have to do it alone.' },
-  { text: 'Reality is subjective.', sub: 'Your truth matters. And so does someone else\u2019s. If you can\u2019t create a shared reality, that\u2019s ok. There can still be love there.' },
-  { text: 'We trust in multi-intelligence.', sub: 'Your body knows before your mind does. Learn how to listen to it.' },
-  { text: 'What you want matters.', sub: 'Life force energy comes from desire. Shadow comes from suppressing it. Creation itself comes from want.' },
-  { text: 'You are the magic.', sub: 'Figure out who you are and then share it. Your magic is the offering.' },
-  { text: 'Everything is sacred, even you.', sub: 'As above, so below. As without, so within.' },
-  { text: 'You\u2019re allowed to enjoy being human.', sub: 'Following your aliveness is the secret to healing the trauma of coming into form.' },
-  { text: 'Your soul has a unique purpose in co-creating a new reality.', sub: 'But in order to build something new, you must first become it.' },
+  { text: 'Being human is the job.', sub: 'We believe that the fragmentation of work and soul has done humanity a huge injustice. We\u2019re here to reintegrate.' },
+  { text: 'You\u2019re the one you\u2019ve been waiting for.', sub: 'We believe all beings on this planet have an inherent knowing that does not require access through another being, concept or deity, eliminating the need for a middleman or savior.' },
+  { text: 'We trust in emergence over certainty.', sub: 'We believe that nothing in life is certain and that trying to control things is where we get stuck, highlighting the paradox of both surrender and radical accountability to what\u2019s happening as the path forward.' },
+  { text: 'Joy is a tool for accelerating the awakening process.', sub: 'We believe that awakening does not shy away from joy or pain, grief or anger, nor does it value any emotion over the other.' },
+  { text: 'Reality is subjective.', sub: 'We believe that your truth matters and so does everyone else\u2019s. While we can work together to create a shared reality, that is not always possible. That\u2019s okay, love can still be there, even if it\u2019s from a distance.' },
+  { text: 'Everything\u2019s a mirror.', sub: 'We believe reality is reflective. What you see in others lives in you. What you judge in others is asking to be integrated.' },
+  { text: 'We trust in multi-intelligence.', sub: 'We believe in many forms of knowing (intuitive, somatic, cognitive, collective, etc.) and we trust in the wisdom of plants and our ancestors.' },
+  { text: 'What you want matters.', sub: 'We believe that life force energy comes from desire and that it\u2019s sacred to want. Creation itself comes from want. And it\u2019s our job to understand the impact of our desires and the role the shadow plays as we suppress or control it.' },
+  { text: 'You\u2019re allowed to enjoy being human.', sub: 'We believe that the world is not fundamentally broken and that heaven on earth is available through a shift in perception. We believe that laughter, creativity, love, and joy are sacred technologies of awakening.' },
+  { text: 'Your soul has a unique purpose.', sub: 'We believe your unique exploration and expression of you is the sacred work. On a collective level, in order for us to build something new, we must first individually become it.' },
+  { text: 'Your wholeness is a gift to the collective.', sub: 'We believe the most generous thing you can do for the world is become more fully yourself. Your integration is their invitation.' },
+  { text: 'You are the magic.', sub: 'We believe that the divine expresses itself through every living being. Your magic is the offering.' },
 ];
 
 export default function DoctrinePage() {

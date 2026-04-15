@@ -224,7 +224,6 @@ export default function TrinityPage() {
       {!hasBraids && !member?.wants_match && (
         <div className="trinity-choice">
           <h1>You can&apos;t do this alone. That&apos;s not a weakness. That&apos;s the design.</h1>
-          <p className="subtitle">A braid is three humans who refuse to let each other sleepwalk through life.</p>
 
           <div style={{ textAlign: 'center', margin: '2rem 0' }}>
             <Image
@@ -237,14 +236,14 @@ export default function TrinityPage() {
           </div>
 
           <p className="subtitle">
-            Pick the two realest people you know. The ones who won&apos;t let you
-            hide. The ones who&apos;ll tell you when you&apos;re full of shit and
-            hold you when you fall apart. That&apos;s a braid. Three people practicing
-            honesty, in real time, on purpose.
+            A braid is three humans who refuse to let each other sleepwalk through life.
+            Pick the two realest people you know &mdash; the ones who won&apos;t let you
+            hide, who&apos;ll tell you when you&apos;re full of shit and hold you when
+            you fall apart. Three people practicing honesty, in real time, on purpose.
           </p>
 
           <div className="practice-section">
-            <h3>Your portal: Marco Polo</h3>
+            <h3>Step One: Marco Polo</h3>
             <p>
               Braids don&apos;t text. They talk. Marco Polo is the app &mdash; async
               video so raw it&apos;ll ruin regular messaging for you. Download it.
@@ -273,7 +272,7 @@ export default function TrinityPage() {
           {createError && <div className="error-msg">{createError}</div>}
 
           <div className="braid-start-module">
-            <h3>Ready?</h3>
+            <h3>Step Two: Form a Braid</h3>
             <p>Name your people. Start the thread. The braid begins when three say yes.</p>
             <button
               className="btn btn-gold"
@@ -282,6 +281,15 @@ export default function TrinityPage() {
             >
               {creating ? 'Creating...' : 'Start a braid'}
             </button>
+          </div>
+
+          <div className="practice-section">
+            <h3>Step Three: Deprogramming</h3>
+            <p>
+              Once your braid is locked in, you&apos;ll unlock Deprogramming &mdash;
+              elder-led tracks designed to help you unlearn what was never yours
+              and return to what is.
+            </p>
           </div>
         </div>
       )}

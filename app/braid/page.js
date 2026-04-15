@@ -374,7 +374,7 @@ export default function TrinityPage() {
           </div>
 
           <div className="practice-section">
-            <h3>Your portal: Marco Polo</h3>
+            <h3>Step One: Marco Polo</h3>
             <p>
               Braids don&apos;t text. They talk. Marco Polo is the app &mdash; async
               video so raw it&apos;ll ruin regular messaging for you. Download it.
@@ -399,13 +399,14 @@ export default function TrinityPage() {
               </a>
             </div>
           </div>
-        </>
-      )}
 
-      {(hasBraids || member?.wants_match) && (
-          <div className="whats-next">
-            <h3>What&apos;s Next?</h3>
-            <p>You&apos;ve got your people. Now the real work begins.</p>
+          <div className="practice-section">
+            <h3>Step Two: Deprogramming</h3>
+            <p>
+              Once your braid is locked in, you&apos;ll unlock Deprogramming &mdash;
+              elder-led tracks designed to help you unlearn what was never yours
+              and return to what is.
+            </p>
             <button
               className="btn btn-gold"
               onClick={() => router.push('/deprogramming')}
@@ -414,6 +415,7 @@ export default function TrinityPage() {
               Deprogramming
             </button>
           </div>
+        </>
       )}
     </div>
   );

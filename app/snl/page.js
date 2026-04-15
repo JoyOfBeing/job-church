@@ -43,7 +43,7 @@ export default function SNLPage() {
 
   return (
     <div className="snl-page">
-      <JourneyProgress completedSteps={[1, 2, 3]} />
+      <JourneyProgress completedSteps={[1, 2]} />
 
       <h1>Sunday Night Live</h1>
       <p className="subtitle">Your regular scheduled (de)programming.</p>
@@ -119,11 +119,11 @@ export default function SNLPage() {
       <div className="whats-next">
         <h3>Ready for your next step?</h3>
         <p>
-          You&apos;ve shown up. You&apos;ve started your braid. You&apos;ve sat
-          in service. Here&apos;s where the real transformation begins.
+          You&apos;ve shown up. You&apos;ve sat in service. Now find your people
+          &mdash; the ones who won&apos;t let you sleepwalk through this.
         </p>
-        <Link href="/deprogramming" className="btn btn-gold" style={{ marginTop: '0.5rem' }}>
-          Deprogramming
+        <Link href="/braid" className="btn btn-gold" style={{ marginTop: '0.5rem' }}>
+          Find Your Braid
         </Link>
       </div>
     </div>

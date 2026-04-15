@@ -56,14 +56,14 @@ export default function ThresholdPage() {
 
       <div className="threshold-next">
         <p>
-          When you&apos;re ready, your next step is to form a braid &mdash; three
-          people who practice being human together. A holy trinity of sorts.
+          When you&apos;re ready, your next step is Sunday Night Live &mdash; our
+          monthly gathering where members show up, get real, and co-create together.
         </p>
         <button
           className="btn btn-gold"
-          onClick={() => router.push('/braid')}
+          onClick={() => router.push('/snl')}
         >
-          I&apos;m ready to start my braid
+          Join the SNL Church Service
         </button>
       </div>
     </div>

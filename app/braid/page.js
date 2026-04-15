@@ -219,7 +219,7 @@ export default function TrinityPage() {
 
   return (
     <div className="trinity-page">
-      <JourneyProgress completedSteps={[1, 2]} />
+      <JourneyProgress completedSteps={[1, 2, 3]} />
 
       {!hasBraids && !member?.wants_match && (
         <div className="trinity-choice">
@@ -397,13 +397,13 @@ export default function TrinityPage() {
       {(hasBraids || member?.wants_match) && (
           <div className="whats-next">
             <h3>What&apos;s Next?</h3>
-            <p>Sunday Night Live &mdash; our monthly gathering for members.</p>
+            <p>You&apos;ve got your people. Now the real work begins.</p>
             <button
               className="btn btn-gold"
-              onClick={() => router.push('/snl')}
+              onClick={() => router.push('/deprogramming')}
               style={{ marginTop: '0.75rem' }}
             >
-              Go to Sunday Night Live
+              Deprogramming
             </button>
           </div>
       )}

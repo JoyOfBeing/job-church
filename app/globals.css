@@ -2846,6 +2846,61 @@ textarea {
   color: var(--glow-teal);
 }
 
+/* Post actions */
+
+.bulletin-post-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.bulletin-action-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  font-family: inherit;
+  transition: color 0.15s;
+}
+
+.bulletin-action-btn:hover {
+  color: var(--text);
+}
+
+.bulletin-action-delete:hover {
+  color: #e57373;
+}
+
+/* Edit form inline */
+
+.bulletin-edit-form {
+  margin: 0.5rem 0;
+}
+
+.bulletin-edit-form input,
+.bulletin-edit-form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.bulletin-edit-form textarea {
+  resize: vertical;
+}
+
+.bulletin-edit-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
 /* ============================================
    RESPONSIVE
    ============================================ */

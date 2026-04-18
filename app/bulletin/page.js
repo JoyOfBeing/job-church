@@ -32,6 +32,9 @@ export default function BulletinPage() {
   const [filterType, setFilterType] = useState('all');
   const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({ type: 'offering', title: '', body: '' });
+  const [editingId, setEditingId] = useState(null);
+  const [editData, setEditData] = useState({ title: '', body: '' });
+  const [deleting, setDeleting] = useState(null);
 
   useEffect(() => {
     if (loading) return;
@@ -39,12 +42,8 @@ export default function BulletinPage() {
       router.push('/login');
       return;
     }
-    if (!member?.is_committed) {
-      router.push('/membership');
-      return;
-    }
     fetchPosts();
-  }, [user, member, loading]);
+  }, [user, loading]);
 
   async function fetchPosts() {
     const { data: postData } = await supabase
@@ -102,6 +101,32 @@ export default function BulletinPage() {
     setSubmitting(false);
   }
 
+  async function handleEdit(postId) {
+    setSubmitting(true);
+
+    await supabase
+      .from('bulletin_posts')
+      .update({ title: editData.title, body: editData.body || null })
+      .eq('id', postId);
+
+    setEditingId(null);
+    setEditData({ title: '', body: '' });
+    setSubmitting(false);
+    await fetchPosts();
+  }
+
+  async function handleDelete(postId) {
+    setDeleting(postId);
+
+    await supabase
+      .from('bulletin_posts')
+      .delete()
+      .eq('id', postId);
+
+    setDeleting(null);
+    await fetchPosts();
+  }
+
   async function toggleInterest(postId) {
     const existing = interests[postId];
 
@@ -126,6 +151,7 @@ export default function BulletinPage() {
 
   if (!user) return null;
 
+  const isAdmin = member?.is_admin;
   const filteredPosts = filterType === 'all'
     ? posts
     : posts.filter(p => p.type === filterType);
@@ -245,6 +271,9 @@ export default function BulletinPage() {
           const info = typeInfo(post.type);
           const interest = interests[post.id] || { count: 0, mine: false };
           const timeAgo = getTimeAgo(post.created_at);
+          const isMine = post.author_id === user.id;
+          const canDelete = isMine || isAdmin;
+          const isEditing = editingId === post.id;
 
           return (
             <div key={post.id} className="bulletin-post">
@@ -252,18 +281,80 @@ export default function BulletinPage() {
                 <span className="bulletin-post-type">{info.icon} {info.label}</span>
                 <span className="bulletin-post-meta">{timeAgo}</span>
               </div>
-              <h3 className="bulletin-post-title">{post.title}</h3>
-              {post.body && <p className="bulletin-post-body">{post.body}</p>}
+
+              {isEditing ? (
+                <div className="bulletin-edit-form">
+                  <div className="field">
+                    <input
+                      type="text"
+                      value={editData.title}
+                      onChange={(e) => setEditData({ ...editData, title: e.target.value })}
+                    />
+                  </div>
+                  <div className="field">
+                    <textarea
+                      value={editData.body}
+                      onChange={(e) => setEditData({ ...editData, body: e.target.value })}
+                      rows={3}
+                    />
+                  </div>
+                  <div className="bulletin-edit-actions">
+                    <button
+                      className="btn btn-gold btn-sm"
+                      onClick={() => handleEdit(post.id)}
+                      disabled={submitting || !editData.title.trim()}
+                    >
+                      Save
+                    </button>
+                    <button
+                      className="btn btn-secondary btn-sm"
+                      onClick={() => setEditingId(null)}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <h3 className="bulletin-post-title">{post.title}</h3>
+                  {post.body && <p className="bulletin-post-body">{post.body}</p>}
+                </>
+              )}
+
               <div className="bulletin-post-footer">
                 <span className="bulletin-post-author">
                   &mdash; {post.members?.name || 'Anonymous'}
                 </span>
-                <button
-                  className={`bulletin-interest-btn ${interest.mine ? 'bulletin-interest-active' : ''}`}
-                  onClick={() => toggleInterest(post.id)}
-                >
-                  {interest.mine ? '✦' : '☆'} {interest.count > 0 ? interest.count : ''} {interest.count === 1 ? 'interested' : interest.count > 1 ? 'interested' : 'I\u2019m interested'}
-                </button>
+                <div className="bulletin-post-actions">
+                  <button
+                    className={`bulletin-interest-btn ${interest.mine ? 'bulletin-interest-active' : ''}`}
+                    onClick={() => toggleInterest(post.id)}
+                  >
+                    {interest.mine ? '✦' : '☆'} {interest.count > 0 ? interest.count : ''} {interest.count === 1 ? 'interested' : interest.count > 1 ? 'interested' : 'I\u2019m interested'}
+                  </button>
+                  {isMine && !isEditing && (
+                    <button
+                      className="bulletin-action-btn"
+                      onClick={() => {
+                        setEditingId(post.id);
+                        setEditData({ title: post.title, body: post.body || '' });
+                      }}
+                    >
+                      Edit
+                    </button>
+                  )}
+                  {canDelete && (
+                    <button
+                      className="bulletin-action-btn bulletin-action-delete"
+                      onClick={() => {
+                        if (window.confirm('Delete this post?')) handleDelete(post.id);
+                      }}
+                      disabled={deleting === post.id}
+                    >
+                      {deleting === post.id ? '...' : 'Delete'}
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           );

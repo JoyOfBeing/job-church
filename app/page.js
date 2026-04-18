@@ -1,11 +1,21 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useAuth } from '../components/AuthProvider';
 
 export default function Home() {
+  const { user, loading } = useAuth();
+  const router = useRouter();
   const choirRef = useRef(null);
   const playedRef = useRef(false);
+
+  useEffect(() => {
+    if (!loading && user) {
+      router.push('/bulletin');
+    }
+  }, [user, loading]);
 
   function playChoir() {
     if (playedRef.current) return;

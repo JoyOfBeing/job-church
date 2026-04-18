@@ -116,6 +116,13 @@ nav .links a:hover { color: var(--text); }
 
 .nav-btn:hover { color: var(--red); }
 
+.nav-coming-soon {
+  color: var(--text-muted);
+  opacity: 0.4;
+  font-size: 0.9rem;
+  cursor: default;
+}
+
 /* ============================================
    LAYOUT
    ============================================ */

@@ -6,12 +6,18 @@ import { useAuth } from '../../components/AuthProvider';
 import JourneyProgress from '../../components/JourneyProgress';
 
 const POST_TYPES = [
-  { value: 'offering', label: 'Offering', icon: '🤲' },
-  { value: 'call', label: 'Call', icon: '📣' },
-  { value: 'ministry', label: 'Ministry', icon: '🌱' },
-  { value: 'event', label: 'Event', icon: '📅' },
-  { value: 'reflection', label: 'Reflection', icon: '🪞' },
-  { value: 'announcement', label: 'Announcement', icon: '📌' },
+  { value: 'offering', label: 'Offering', icon: '🤲',
+    description: 'Share a gift with the community \u2014 your time, a skill, a practice. No fees, no transactions. This is generosity, not commerce.' },
+  { value: 'call', label: 'Call', icon: '📣',
+    description: 'Put out a call for help, collaborators, or companions. \u201CAnyone want to practice breathwork together?\u201D' },
+  { value: 'ministry', label: 'Ministry', icon: '🌱',
+    description: 'Propose an ongoing group around a shared interest or calling. Ministries are member-led and emerge from the community.' },
+  { value: 'event', label: 'Event', icon: '📅',
+    description: 'Organize a gathering \u2014 IRL meetup, virtual hangout, group activity. Free and open to members.' },
+  { value: 'reflection', label: 'Reflection', icon: '🪞',
+    description: 'Share something you\u2019re sitting with \u2014 a question, a realization, a provocation for the community.' },
+  { value: 'announcement', label: 'Announcement', icon: '📌',
+    description: 'Share church news, updates, or milestones with the community.' },
 ];
 
 export default function BulletinPage() {
@@ -131,6 +137,20 @@ export default function BulletinPage() {
       <h1>The Bulletin</h1>
       <p className="subtitle">What&apos;s alive in the church right now.</p>
 
+      <div className="bulletin-rules">
+        <h3>How this works</h3>
+        <p>
+          The Bulletin is the church&apos;s community board &mdash; a place to give,
+          connect, and co-create. Everything here is offered freely as an expression
+          of who you are and what you&apos;re here to contribute.
+        </p>
+        <ul>
+          <li><strong>This is not a marketplace.</strong> No promoting paid services, no fees, no transactions. If you want to get paid for your work, that&apos;s what the <a href="https://job-board-pied-three.vercel.app" target="_blank" rel="noopener noreferrer">JOB Board</a> is for.</li>
+          <li><strong>Give freely.</strong> Offerings are gifts &mdash; your time, your skill, your presence. No strings attached.</li>
+          <li><strong>Be real.</strong> This is a space for honesty, not performance. Say what you mean.</li>
+        </ul>
+      </div>
+
       <div className="bulletin-actions">
         <button
           className="btn btn-gold"
@@ -155,6 +175,9 @@ export default function BulletinPage() {
                 </option>
               ))}
             </select>
+            <p className="bulletin-type-hint">
+              {POST_TYPES.find(t => t.value === formData.type)?.description}
+            </p>
           </div>
 
           <div className="field">

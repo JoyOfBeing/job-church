@@ -2591,8 +2591,65 @@ textarea {
   margin-bottom: 0.25rem;
 }
 
+.bulletin-rules {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.bulletin-rules h3 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  color: var(--glow-teal);
+}
+
+.bulletin-rules p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.bulletin-rules ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bulletin-rules li {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  padding: 0.35rem 0;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.bulletin-rules li::before {
+  content: '\2022';
+  color: var(--glow-purple);
+  position: absolute;
+  left: 0;
+}
+
+.bulletin-rules a {
+  color: var(--glow-teal);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .bulletin-actions {
   margin: 1.5rem 0;
+}
+
+.bulletin-type-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  line-height: 1.5;
+  font-style: italic;
 }
 
 /* Post form */

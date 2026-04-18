@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useAuth } from '../../components/AuthProvider';
 import JourneyProgress from '../../components/JourneyProgress';
 
@@ -322,9 +323,9 @@ export default function BulletinPage() {
               )}
 
               <div className="bulletin-post-footer">
-                <span className="bulletin-post-author">
+                <Link href={`/member/${post.author_id}`} className="bulletin-post-author">
                   &mdash; {post.members?.name || 'Anonymous'}
-                </span>
+                </Link>
                 <div className="bulletin-post-actions">
                   <button
                     className={`bulletin-interest-btn ${interest.mine ? 'bulletin-interest-active' : ''}`}

@@ -8,7 +8,7 @@ const STEPS_TOP = [
   { label: 'Beliefs', path: '/doctrine', number: 1 },
   { label: '(Re)Membership', path: '/membership', number: 2 },
   { label: 'SNL Service', path: '/snl', number: 3 },
-  { label: 'Braids (Small Groups)', path: '/braid', number: 4 },
+  { label: 'Bulletin', path: '/bulletin', number: 4 },
 ];
 
 export default function JourneyProgress({ completedSteps = [] }) {
@@ -16,7 +16,7 @@ export default function JourneyProgress({ completedSteps = [] }) {
 
   // Unlock Deprogramming when committed, keep others locked for now
   const STEPS_BOTTOM = [
-    { label: 'Bulletin', path: '/bulletin', number: 5 },
+    { label: 'Braids (Small Groups)', path: '/braid', number: 5 },
     { label: 'Deprogramming', path: member?.is_committed ? '/deprogramming' : null, number: 6 },
     { label: 'Magic Show', path: '/magic-show', number: 7 },
     { label: 'Elder Portal', path: '/elder-path', number: 8 },

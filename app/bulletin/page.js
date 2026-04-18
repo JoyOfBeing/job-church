@@ -147,7 +147,7 @@ export default function BulletinPage() {
         <ul>
           <li><strong>This is not a marketplace.</strong> No promoting paid services, no fees, no transactions. The Bulletin is for giving, not getting paid.</li>
           <li><strong>Give freely.</strong> Offerings are gifts &mdash; your time, your skill, your presence. No strings attached.</li>
-          <li><strong>Be real.</strong> This is a space for honesty, not performance. Say what you mean.</li>
+          <li><strong>Be you.</strong> This is a space for the real you, not the performing you. Show up as who you actually are.</li>
         </ul>
       </div>
 
@@ -225,6 +225,7 @@ export default function BulletinPage() {
             key={t.value}
             className={`bulletin-filter ${filterType === t.value ? 'bulletin-filter-active' : ''}`}
             onClick={() => setFilterType(t.value)}
+            title={t.description}
           >
             {t.icon} {t.label}
           </button>

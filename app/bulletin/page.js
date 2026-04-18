@@ -18,6 +18,8 @@ const POST_TYPES = [
     description: 'Share something you\u2019re sitting with \u2014 a question, a realization, a provocation for the community.' },
   { value: 'announcement', label: 'Announcement', icon: '📌',
     description: 'Share church news, updates, or milestones with the community.' },
+  { value: 'transmission', label: 'Transmission', icon: '⚡',
+    description: 'A download, an insight, a provocation. Not a discussion \u2014 a signal you received that the community needs to hear.' },
 ];
 
 export default function BulletinPage() {

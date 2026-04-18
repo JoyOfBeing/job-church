@@ -59,7 +59,7 @@ export default function MemberProfilePage() {
   async function handleSave() {
     setSaving(true);
 
-    await supabase
+    const { error } = await supabase
       .from('members')
       .update({
         name: editData.name || null,
@@ -70,9 +70,14 @@ export default function MemberProfilePage() {
       })
       .eq('id', user.id);
 
-    setEditing(false);
+    if (error) {
+      console.error('Profile save error:', error);
+      alert('Could not save — check console for details.');
+    } else {
+      setEditing(false);
+      await fetchProfile();
+    }
     setSaving(false);
-    await fetchProfile();
   }
 
   if (loading || loadingData) {
@@ -166,7 +171,7 @@ export default function MemberProfilePage() {
             <textarea
               value={editData.bio}
               onChange={(e) => setEditData({ ...editData, bio: e.target.value })}
-              placeholder="Who are you right now? What are you sitting with?"
+              placeholder="What's your Joy of Being?"
               rows={4}
             />
           </div>

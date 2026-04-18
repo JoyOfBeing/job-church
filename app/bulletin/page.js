@@ -145,7 +145,7 @@ export default function BulletinPage() {
           of who you are and what you&apos;re here to contribute.
         </p>
         <ul>
-          <li><strong>This is not a marketplace.</strong> No promoting paid services, no fees, no transactions. If you want to get paid for your work, that&apos;s what the <a href="https://job-board-pied-three.vercel.app" target="_blank" rel="noopener noreferrer">JOB Board</a> is for.</li>
+          <li><strong>This is not a marketplace.</strong> No promoting paid services, no fees, no transactions. The Bulletin is for giving, not getting paid.</li>
           <li><strong>Give freely.</strong> Offerings are gifts &mdash; your time, your skill, your presence. No strings attached.</li>
           <li><strong>Be real.</strong> This is a space for honesty, not performance. Say what you mean.</li>
         </ul>

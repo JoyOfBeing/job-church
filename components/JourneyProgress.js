@@ -16,10 +16,10 @@ export default function JourneyProgress({ completedSteps = [] }) {
 
   // Unlock Deprogramming when committed, keep others locked for now
   const STEPS_BOTTOM = [
-    { label: 'Deprogramming', path: member?.is_committed ? '/deprogramming' : null, number: 5 },
-    { label: 'Magic Show', path: '/magic-show', number: 6 },
-    { label: 'Elder Portal', path: '/elder-path', number: 7 },
-    { label: 'Bulletin', path: '/bulletin', number: 8 },
+    { label: 'Bulletin', path: '/bulletin', number: 5 },
+    { label: 'Deprogramming', path: member?.is_committed ? '/deprogramming' : null, number: 6 },
+    { label: 'Magic Show', path: '/magic-show', number: 7 },
+    { label: 'Elder Portal', path: '/elder-path', number: 8 },
   ];
   const pathname = usePathname();
   const allSteps = [...STEPS_TOP, ...STEPS_BOTTOM];

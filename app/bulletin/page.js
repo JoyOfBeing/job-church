@@ -9,7 +9,7 @@ const POST_TYPES = [
   { value: 'offering', label: 'Offering', icon: '🤲',
     description: 'Share a gift with the community \u2014 your time, a skill, a practice. No fees, no transactions. This is generosity, not commerce.' },
   { value: 'call', label: 'Call', icon: '📣',
-    description: 'Put out a call for help, collaborators, or companions. \u201CAnyone want to practice breathwork together?\u201D' },
+    description: 'Put out a call for help, collaborators, or companions. \u201CAnyone want to practice breathwork together or form a braid?\u201D' },
   { value: 'ministry', label: 'Ministry', icon: '🌱',
     description: 'Propose an ongoing group around a shared interest or calling. Ministries are member-led and emerge from the community.' },
   { value: 'event', label: 'Event', icon: '📅',

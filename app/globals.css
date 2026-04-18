@@ -2576,6 +2576,185 @@ textarea {
 }
 
 /* ============================================
+   BULLETIN PAGE
+   ============================================ */
+
+.bulletin-page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 6rem;
+  animation: fadeInSlow 0.8s ease;
+}
+
+.bulletin-page h1 {
+  font-size: 2.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.bulletin-actions {
+  margin: 1.5rem 0;
+}
+
+/* Post form */
+
+.bulletin-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.bulletin-form select {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.bulletin-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-family: inherit;
+  resize: vertical;
+}
+
+/* Filters */
+
+.bulletin-filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.bulletin-filter {
+  padding: 0.35rem 0.75rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.bulletin-filter:hover {
+  border-color: var(--glow-purple);
+  color: var(--text);
+}
+
+.bulletin-filter-active {
+  background: rgba(139, 92, 246, 0.12);
+  border-color: var(--glow-purple);
+  color: var(--glow-teal);
+}
+
+/* Feed */
+
+.bulletin-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bulletin-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-muted);
+}
+
+.bulletin-post {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  transition: border-color 0.15s;
+}
+
+.bulletin-post:hover {
+  border-color: var(--border-hover);
+}
+
+.bulletin-post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.bulletin-post-type {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--glow-teal);
+}
+
+.bulletin-post-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.bulletin-post-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.bulletin-post-body {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.bulletin-post-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bulletin-post-author {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.bulletin-interest-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  padding: 0.3rem 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.bulletin-interest-btn:hover {
+  border-color: var(--glow-purple);
+  color: var(--text);
+}
+
+.bulletin-interest-active {
+  background: rgba(139, 92, 246, 0.12);
+  border-color: var(--glow-purple);
+  color: var(--glow-teal);
+}
+
+/* ============================================
    RESPONSIVE
    ============================================ */
 
@@ -2590,4 +2769,5 @@ textarea {
   .elder-grid { grid-template-columns: 1fr; }
   .donation-amounts { justify-content: center; }
   .elder-profile-header { flex-direction: column; text-align: center; }
+  .bulletin-filters { gap: 0.35rem; }
 }

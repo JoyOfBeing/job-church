@@ -161,6 +161,11 @@ export default function AdminPage() {
     fetchData();
   }
 
+  async function toggleElderBadge(memberId, currentValue) {
+    await supabase.from('members').update({ is_elder: !currentValue }).eq('id', memberId);
+    fetchData();
+  }
+
   if (loading || loadingData) {
     return <div className="loading">Loading admin...</div>;
   }
@@ -301,14 +306,23 @@ export default function AdminPage() {
                   {m.name || 'Unnamed'}
                   {m.is_committed && <span className="admin-badge admin-badge-gold"> Committed</span>}
                   {m.core_track_completed && <span className="admin-badge admin-badge-green"> Core Done</span>}
+                  {m.is_elder && <span className="admin-badge admin-badge-gold"> Elder</span>}
                 </div>
                 <div className="member-email">{m.email}</div>
               </div>
-              <div className="member-meta">
-                Joined {new Date(m.joined_at).toLocaleDateString()}
-                {m.donation_amount_cents && (
-                  <div>${m.donation_amount_cents / 100}/{m.donation_frequency || 'mo'}</div>
-                )}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <button
+                  className="btn btn-secondary btn-sm"
+                  onClick={() => toggleElderBadge(m.id, m.is_elder)}
+                >
+                  {m.is_elder ? 'Remove Elder' : 'Make Elder'}
+                </button>
+                <div className="member-meta">
+                  Joined {new Date(m.joined_at).toLocaleDateString()}
+                  {m.donation_amount_cents && (
+                    <div>${m.donation_amount_cents / 100}/{m.donation_frequency || 'mo'}</div>
+                  )}
+                </div>
               </div>
             </div>
           </div>

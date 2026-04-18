@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useAuth } from './AuthProvider';
 
 export default function Nav() {
@@ -10,13 +9,7 @@ export default function Nav() {
   return (
     <nav>
       <Link href="/" className="logo">
-        <Image
-          src="/job-logo.png"
-          alt="J.O.B."
-          width={1280}
-          height={720}
-          style={{ width: '80px', height: 'auto' }}
-        />
+        Joy of Being
       </Link>
       <div className="links">
         {loading ? null : user ? (

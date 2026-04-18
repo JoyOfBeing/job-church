@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useAuth } from '../../components/AuthProvider';
@@ -215,8 +215,7 @@ export default function TrinityPage() {
 
   if (!user) return null;
 
-  const searchParams = useSearchParams();
-  const previewIntro = searchParams.get('preview') === 'intro';
+  const previewIntro = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('preview') === 'intro';
   const hasBraids = !previewIntro && braids.length > 0;
 
   return (

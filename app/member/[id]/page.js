@@ -242,7 +242,7 @@ export default function MemberProfilePage() {
             </div>
           )}
 
-          {isOwnProfile && (
+          {isOwnProfile ? (
             <button
               className="btn btn-secondary"
               onClick={() => setEditing(true)}
@@ -250,6 +250,14 @@ export default function MemberProfilePage() {
             >
               Edit Profile
             </button>
+          ) : (
+            <Link
+              href={`/messages/${id}`}
+              className="btn btn-gold"
+              style={{ marginTop: '1rem', display: 'inline-block' }}
+            >
+              Message
+            </Link>
           )}
         </>
       )}

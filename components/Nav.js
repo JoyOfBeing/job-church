@@ -15,6 +15,7 @@ export default function Nav() {
         {loading ? null : user ? (
           <>
             <a href="/bulletin">Bulletin</a>
+            <a href={`/member/${user.id}`}>My Profile</a>
             <span className="nav-coming-soon">Donate</span>
             {member?.is_admin && <a href="/admin">Admin</a>}
             <button className="nav-btn" onClick={signOut}>Sign out</button>

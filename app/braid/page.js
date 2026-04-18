@@ -275,13 +275,30 @@ export default function TrinityPage() {
           <div className="braid-start-module">
             <h3>Step Two: Form a Braid</h3>
             <p>Think of two people you trust enough to be fully you in front of. Invite them. The braid begins when three say yes.</p>
-            <button
-              className="btn btn-gold"
-              onClick={createTrinity}
-              disabled={creating || !user}
-            >
-              {creating ? 'Creating...' : 'Start a braid'}
-            </button>
+
+            <div className="braid-paths">
+              <div className="braid-path">
+                <h4>Know your people?</h4>
+                <p>Start a braid and send them the invite link. They&apos;ll join the church through you.</p>
+                <button
+                  className="btn btn-gold"
+                  onClick={createTrinity}
+                  disabled={creating || !user}
+                >
+                  {creating ? 'Creating...' : 'Start a braid'}
+                </button>
+              </div>
+              <div className="braid-path">
+                <h4>Looking for your people?</h4>
+                <p>Other members are looking too. Post a Call to the Bulletin and find your braid here.</p>
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => router.push('/bulletin')}
+                >
+                  Go to the Bulletin
+                </button>
+              </div>
+            </div>
           </div>
 
           <div className="practice-section">

@@ -2591,6 +2591,41 @@ textarea {
   margin-bottom: 0.25rem;
 }
 
+/* Braid paths */
+
+.braid-paths {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.braid-path {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.braid-path h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--glow-teal);
+}
+
+.braid-path p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 600px) {
+  .braid-paths { grid-template-columns: 1fr; }
+}
+
+/* Bulletin */
+
 .bulletin-rules {
   background: var(--surface);
   border: 1px solid var(--border);

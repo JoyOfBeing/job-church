@@ -224,7 +224,7 @@ export default function TrinityPage() {
 
       {!hasBraids && !member?.wants_match && (
         <div className="trinity-choice">
-          <h1>You can&apos;t do this alone. That&apos;s not a weakness. That&apos;s the design.</h1>
+          <h1>Three people. No hiding.</h1>
 
           <div style={{ textAlign: 'center', margin: '2rem 0' }}>
             <Image
@@ -237,18 +237,18 @@ export default function TrinityPage() {
           </div>
 
           <p className="subtitle">
-            A braid is three humans who refuse to let each other sleepwalk through life.
-            Pick the two realest people you know &mdash; the ones who won&apos;t let you
-            hide, who&apos;ll tell you when you&apos;re full of shit and hold you when
-            you fall apart. Three people practicing honesty, in real time, on purpose.
+            A braid is the smallest unit of church. Three humans who practice being
+            honest with each other &mdash; not in theory, but on purpose, out loud,
+            in real time.
           </p>
 
           <div className="practice-section">
             <h3>Step One: Marco Polo</h3>
             <p>
-              Braids don&apos;t text. They talk. Marco Polo is the app &mdash; async
-              video so raw it&apos;ll ruin regular messaging for you. Download it.
-              Join our Sharecast. See what this looks like when people stop performing.
+              We practice braiding face to face, but asynchronously. Marco Polo is a
+              great place to practice: async video messages, no filters, no editing.
+              It&apos;s the opposite of social media or texting. Download it, then join
+              the church Sharecast to see what braids feel like.
             </p>
             <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
               <a
@@ -274,7 +274,7 @@ export default function TrinityPage() {
 
           <div className="braid-start-module">
             <h3>Step Two: Form a Braid</h3>
-            <p>Name your people. Start the thread. The braid begins when three say yes.</p>
+            <p>Think of two people you trust enough to be fully you in front of. Invite them. The braid begins when three say yes.</p>
             <button
               className="btn btn-gold"
               onClick={createTrinity}
@@ -287,9 +287,9 @@ export default function TrinityPage() {
           <div className="practice-section">
             <h3>Step Three: Deprogramming</h3>
             <p>
-              Once your braid is locked in, you&apos;ll unlock Deprogramming &mdash;
-              elder-led tracks designed to help you unlearn what was never yours
-              and return to what is.
+              Your braid will be your support team for what comes next &mdash;
+              Deprogramming. We&apos;re not made to do this work alone. That&apos;s
+              what the braid is for.
             </p>
           </div>
         </div>

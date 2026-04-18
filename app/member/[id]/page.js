@@ -15,6 +15,7 @@ export default function MemberProfilePage() {
   const [editing, setEditing] = useState(false);
   const [editData, setEditData] = useState({});
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   const isOwnProfile = user?.id === id;
 
@@ -54,6 +55,32 @@ export default function MemberProfilePage() {
     }
     if (postsRes.data) setPosts(postsRes.data);
     setLoadingData(false);
+  }
+
+  async function handlePhotoUpload(file) {
+    if (!file) return;
+    setUploading(true);
+
+    const ext = file.name.split('.').pop();
+    const path = `${user.id}/photo.${ext}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from('member-photos')
+      .upload(path, file, { upsert: true });
+
+    if (uploadError) {
+      console.error('Upload error:', uploadError);
+      alert('Photo upload failed.');
+      setUploading(false);
+      return;
+    }
+
+    const { data: { publicUrl } } = supabase.storage
+      .from('member-photos')
+      .getPublicUrl(path);
+
+    setEditData({ ...editData, photo_url: publicUrl });
+    setUploading(false);
   }
 
   async function handleSave() {
@@ -158,13 +185,36 @@ export default function MemberProfilePage() {
             />
           </div>
           <div className="field">
-            <label>Photo URL</label>
-            <input
-              type="text"
-              value={editData.photo_url}
-              onChange={(e) => setEditData({ ...editData, photo_url: e.target.value })}
-              placeholder="Paste a link to your photo"
-            />
+            <label>Photo</label>
+            <div
+              className="photo-drop-zone"
+              onDragOver={(e) => { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }}
+              onDragLeave={(e) => e.currentTarget.classList.remove('drag-over')}
+              onDrop={(e) => {
+                e.preventDefault();
+                e.currentTarget.classList.remove('drag-over');
+                handlePhotoUpload(e.dataTransfer.files[0]);
+              }}
+              onClick={() => document.getElementById('photo-input').click()}
+            >
+              {uploading ? (
+                <p>Uploading...</p>
+              ) : editData.photo_url ? (
+                <div className="photo-preview">
+                  <img src={editData.photo_url} alt="Preview" />
+                  <p>Drop or click to replace</p>
+                </div>
+              ) : (
+                <p>Drop a photo here or click to choose</p>
+              )}
+              <input
+                id="photo-input"
+                type="file"
+                accept="image/*"
+                style={{ display: 'none' }}
+                onChange={(e) => handlePhotoUpload(e.target.files[0])}
+              />
+            </div>
           </div>
           <div className="field">
             <label>Bio</label>

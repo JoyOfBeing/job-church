@@ -2715,6 +2715,37 @@ textarea {
   resize: vertical;
 }
 
+.photo-drop-zone {
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  color: var(--text-muted);
+}
+.photo-drop-zone:hover,
+.photo-drop-zone.drag-over {
+  border-color: var(--gold);
+  background: rgba(212, 175, 55, 0.05);
+}
+.photo-drop-zone p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+.photo-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.photo-preview img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .profile-edit-actions {
   display: flex;
   gap: 0.5rem;
